@@ -1,19 +1,15 @@
 import Link from 'next/link';
 import { MotionSection } from '@/components/motion/MotionSection';
-import { cn } from '@/lib/utils';
 import {
   Activity,
   AlertTriangle,
   CalendarCheck,
   BarChart3,
   Boxes,
-  CheckCheck,
   ClipboardCheck,
-  Layers,
   ShieldCheck,
   Wrench,
   Smartphone,
-  Sparkles,
   Gauge,
 } from 'lucide-react';
 
@@ -96,33 +92,6 @@ const featureHighlights = [
     ],
   },
 ];
-
-const kpiMetrics = [
-  {
-    label: 'Mean Time To Repair (MTTR)',
-    value: '1.8 hours',
-    detail:
-      'Technicians resolve breakdowns faster with guided workflows and remote collaboration tools.',
-  },
-  {
-    label: 'Mean Time Between Failures (MTBF)',
-    value: '120 days',
-    detail: 'Real-time condition monitoring and PM compliance extend asset health.',
-  },
-  {
-    label: 'Asset Uptime',
-    value: '99.2%',
-    detail:
-      'Planned maintenance windows reduce unplanned downtime and improve production throughput.',
-  },
-  {
-    label: 'Preventive Maintenance Compliance',
-    value: '94%',
-    detail: 'Automated scheduling, notifications, and mobile CMMS checklists boost compliance.',
-  },
-];
-
-const kpiProgress = [86, 74, 96, 94];
 
 const testimonialQuotes = [
   {
@@ -215,166 +184,172 @@ export default function HomePage() {
     <>
       <main>
         {/* Hero */}
-        <section className="section relative overflow-hidden">
-          <div
-            className="absolute inset-0 bg-gradient-to-br from-slate-900 via-brand to-slate-900 opacity-10"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute left-1/2 top-[-140px] h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(255,122,25,0.28),_transparent_65%)] blur-3xl"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute right-[-160px] bottom-[-220px] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,_rgba(11,30,53,0.25),_transparent_70%)] blur-3xl"
-            aria-hidden="true"
-          />
-          <div className="container-12 relative grid items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="relative">
-              <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-accent ring-1 ring-accent/20">
-                <Activity className="h-3.5 w-3.5" /> Locally engineered CMMS for Algeria
-              </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight text-brand sm:text-5xl">
-                A Computerized Maintenance Management System engineered for uptime, compliance, and
-                growth.
-              </h1>
-              <p className="mt-5 text-lg text-slate-700">
-                Maintafox modernizes maintenance operations with a unified CMMS that centralizes
-                assets, optimizes preventive maintenance, and delivers actionable analytics. Empower
-                technicians, planners, and executives with live data to reduce downtime, extend
-                asset lifecycles, and control lifecycle costs.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link className="btn-primary" href="/demo">
-                  Request a Live Demo
-                </Link>
-                <Link className="btn-outline" href="/features">
-                  Explore the Platform
-                </Link>
-                <Link
-                  className="inline-flex items-center justify-center rounded-md px-5 py-3 font-medium text-slate-600 transition-colors hover:text-brand"
-                  href="/#faq"
-                >
-                  Read FAQs
-                </Link>
-              </div>
-              <dl className="mt-10 grid gap-4 sm:grid-cols-3">
-                {[
-                  {
-                    label: 'Average downtime reduction',
-                    value: '-32%',
-                  },
-                  {
-                    label: 'Preventive maintenance compliance',
-                    value: '94%',
-                  },
-                  {
-                    label: 'Implementation timeline',
-                    value: '4-6 weeks',
-                  },
-                ].map((metric) => (
-                  <div
-                    key={metric.label}
-                    className="group relative overflow-hidden rounded-2xl border border-brand/10 bg-white/80 px-5 py-4 shadow-sm transition hover:border-accent/40 hover:shadow-lg"
-                  >
-                    <span
-                      className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-transparent opacity-0 transition group-hover:opacity-100"
-                      aria-hidden="true"
-                    />
-                    <dt className="text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-400">
-                      {metric.label}
-                    </dt>
-                    <dd className="mt-2 text-2xl font-semibold text-brand">{metric.value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-6 text-sm text-slate-500">
-                Trusted by manufacturing, energy, healthcare, and public sector organizations across
-                Algeria.
-              </p>
-              <div className="pointer-events-none absolute -right-10 bottom-4 hidden w-48 rotate-6 rounded-2xl border border-accent/20 bg-white/90 px-5 py-4 text-xs shadow-xl lg:block">
-                <div className="flex items-center gap-2 text-accent">
-                  <Wrench className="h-4 w-4" />
-                  <span className="font-semibold">Playbook snapshot</span>
+        <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-br from-slate-950 via-brand to-slate-900">
+          {/* Animated background elements */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-accent blur-[120px]" />
+            <div className="absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-blue-500 blur-[120px]" />
+          </div>
+
+          <div className="container-12 relative flex min-h-[90vh] flex-col justify-center py-20">
+            <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="relative z-10">
+                {/* Floating badge */}
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-xl backdrop-blur-sm ring-1 ring-white/20">
+                  <Activity className="h-3.5 w-3.5 animate-pulse text-accent" />
+                  <span className="bg-gradient-to-r from-white to-accent bg-clip-text text-transparent">
+                    Algeria&apos;s First Local CMMS
+                  </span>
                 </div>
-                <p className="mt-2 text-[11px] text-slate-600">
-                  145+ assets onboarded in the last 30 days across manufacturing clients.
+
+                <h1 className="mt-8 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+                  Stop Fighting
+                  <span className="bg-gradient-to-r from-accent to-orange-300 bg-clip-text text-transparent">
+                    {' '}
+                    Fires.
+                  </span>
+                  <br />
+                  Start Building
+                  <span className="bg-gradient-to-r from-blue-400 to-brand-accent bg-clip-text text-transparent">
+                    {' '}
+                    Reliability.
+                  </span>
+                </h1>
+
+                <p className="mt-6 text-lg leading-relaxed text-slate-300 lg:text-xl">
+                  A unified CMMS platform that transforms reactive maintenance into proactive
+                  strategy. Built in Algeria, for Algerian industries.
                 </p>
-              </div>
-            </div>
-            <div className="relative">
-              <div
-                className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-slate-300/60 via-white/80 to-slate-200/60 blur-3xl"
-                aria-hidden="true"
-              />
-              <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white/95 shadow-xl backdrop-blur">
-                <div className="border-b border-slate-200 bg-gradient-to-r from-brand/5 to-accent/5 px-6 py-4">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-600">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
-                    Real-time Maintenance Command Center
-                  </div>
-                </div>
-                <div className="grid gap-6 px-6 py-6 text-sm text-slate-600">
-                  <div className="grid gap-2">
-                    <strong className="text-brand">Today&apos;s KPIs</strong>
-                    <ul className="space-y-1 text-xs text-slate-500">
-                      <li className="flex items-center gap-2">
-                        <span
-                          className="h-1.5 w-4 rounded-full bg-emerald-500"
-                          aria-hidden="true"
-                        />{' '}
-                        MTTR vs target: 1.8h · Trending better
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-4 rounded-full bg-brand" aria-hidden="true" /> Work
-                        orders completed: 27 · SLA 98%
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <span className="h-1.5 w-4 rounded-full bg-amber-500" aria-hidden="true" />{' '}
-                        Spare parts reserved: 12 · Stock health 92%
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="grid gap-2">
-                    <strong className="text-brand">Critical assets</strong>
-                    <div className="grid gap-3 text-xs">
-                      <div className="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2 shadow-sm">
-                        <span>Compressor Line A</span>
-                        <span className="font-semibold text-emerald-600">Healthy</span>
-                      </div>
-                      <div className="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2 shadow-sm">
-                        <span>Packaging Robot 3</span>
-                        <span className="font-semibold text-amber-600">PM due tomorrow</span>
-                      </div>
-                      <div className="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2 shadow-sm">
-                        <span>HVAC AHU-2</span>
-                        <span className="font-semibold text-rose-600">Work order escalated</span>
-                      </div>
+
+                {/* Stat pills */}
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <div className="group relative overflow-hidden rounded-2xl bg-white/10 px-6 py-4 backdrop-blur-sm ring-1 ring-white/20 transition-all hover:bg-white/20">
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    <div className="relative text-3xl font-bold text-white">-32%</div>
+                    <div className="relative text-xs uppercase tracking-wider text-slate-300">
+                      Downtime
                     </div>
                   </div>
-                  <div className="grid gap-2">
-                    <strong className="text-brand">Team updates</strong>
-                    <p className="rounded-xl bg-brand/5 px-4 py-3 text-xs text-brand">
-                      Morning shift logged 17 digital checklists and 5 safety inspections via the
-                      Maintafox mobile app.
-                    </p>
+                  <div className="group relative overflow-hidden rounded-2xl bg-white/10 px-6 py-4 backdrop-blur-sm ring-1 ring-white/20 transition-all hover:bg-white/20">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    <div className="relative text-3xl font-bold text-white">94%</div>
+                    <div className="relative text-xs uppercase tracking-wider text-slate-300">
+                      PM Compliance
+                    </div>
                   </div>
-                  <div className="grid gap-2">
-                    <strong className="text-brand">On-the-go actions</strong>
-                    <div className="grid gap-2 text-xs">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-slate-500">
-                        <Smartphone className="h-3.5 w-3.5" /> Technician push alerts synced
-                      </span>
-                      <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-slate-500">
-                        <ClipboardCheck className="h-3.5 w-3.5" /> 8 inspections approved today
-                      </span>
+                  <div className="group relative overflow-hidden rounded-2xl bg-white/10 px-6 py-4 backdrop-blur-sm ring-1 ring-white/20 transition-all hover:bg-white/20">
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    <div className="relative text-3xl font-bold text-white">4-6w</div>
+                    <div className="relative text-xs uppercase tracking-wider text-slate-300">
+                      Go-Live
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="mt-10 flex flex-wrap gap-4">
+                  <Link
+                    href="/demo"
+                    className="group relative overflow-hidden rounded-xl bg-accent px-8 py-4 font-semibold text-white shadow-xl transition-all hover:shadow-2xl hover:shadow-accent/50"
+                  >
+                    <span className="relative z-10">Request a Live Demo</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-accent opacity-0 transition-opacity group-hover:opacity-100" />
+                  </Link>
+                  <Link
+                    href="/features"
+                    className="group rounded-xl border-2 border-white/30 px-8 py-4 font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/10"
+                  >
+                    Explore Platform
+                  </Link>
+                </div>
+              </div>
+
+              {/* Floating dashboard preview */}
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-accent/30 via-blue-500/30 to-accent/30 blur-3xl" />
+
+                {/* Dashboard card with 3D effect */}
+                <div className="relative transform-gpu rounded-2xl bg-white/95 p-1 shadow-2xl backdrop-blur-xl transition-transform hover:scale-[1.02]">
+                  <div className="overflow-hidden rounded-xl">
+                    {/* Header bar */}
+                    <div className="flex items-center justify-between border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="flex gap-1.5">
+                          <div className="h-3 w-3 rounded-full bg-red-500" />
+                          <div className="h-3 w-3 rounded-full bg-yellow-500" />
+                          <div className="h-3 w-3 rounded-full bg-green-500" />
+                        </div>
+                        <span className="text-sm font-semibold text-slate-700">
+                          Real-time Dashboard
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 animate-pulse rounded-full bg-accent" />
+                        <span className="text-xs text-slate-500">Live</span>
+                      </div>
+                    </div>
+
+                    {/* Dashboard content */}
+                    <div className="space-y-4 bg-gradient-to-br from-white to-slate-50 p-6">
+                      {/* KPI Row */}
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="rounded-lg bg-white p-3 shadow-sm ring-1 ring-slate-100">
+                          <div className="text-xs text-slate-500">MTTR</div>
+                          <div className="text-xl font-bold text-brand">1.8h</div>
+                        </div>
+                        <div className="rounded-lg bg-white p-3 shadow-sm ring-1 ring-slate-100">
+                          <div className="text-xs text-slate-500">Uptime</div>
+                          <div className="text-xl font-bold text-emerald-600">99.2%</div>
+                        </div>
+                        <div className="rounded-lg bg-white p-3 shadow-sm ring-1 ring-slate-100">
+                          <div className="text-xs text-slate-500">WOs</div>
+                          <div className="text-xl font-bold text-accent">27</div>
+                        </div>
+                      </div>
+
+                      {/* Critical Assets */}
+                      <div className="space-y-2">
+                        <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+                          Critical Assets
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between rounded-lg bg-gradient-to-r from-emerald-50 to-white p-3 ring-1 ring-emerald-100">
+                            <span className="text-sm font-medium text-slate-700">Compressor A</span>
+                            <span className="rounded-full bg-emerald-500 px-2 py-0.5 text-xs font-semibold text-white">
+                              OK
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between rounded-lg bg-gradient-to-r from-amber-50 to-white p-3 ring-1 ring-amber-100">
+                            <span className="text-sm font-medium text-slate-700">Robot 3</span>
+                            <span className="rounded-full bg-amber-500 px-2 py-0.5 text-xs font-semibold text-white">
+                              PM Due
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
 
+          {/* Bottom wave */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg
+              viewBox="0 0 1440 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full"
+            >
+              <path
+                d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+                fill="white"
+              />
+            </svg>
+          </div>
+        </section>{' '}
         <MotionSection className="border-t border-b border-slate-200 bg-white/70 py-6">
           <div className="container-12 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
             <span>Trusted by Algerian innovators</span>
@@ -388,233 +363,237 @@ export default function HomePage() {
             <span>Smart Cities</span>
           </div>
         </MotionSection>
-
-        {/* Pain points */}
-        <MotionSection id="benefits" className="section section-muted">
-          <div className="container-12 grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-3xl font-semibold text-brand">
-                  Is reactive maintenance putting your operations at risk?
-                </h2>
-                <p className="mt-3 text-slate-600">
-                  Maintafox replaces manual spreadsheets and fragmented tools with a centralized
-                  computerized maintenance management system. We help teams eliminate firefighting,
-                  standardize processes, and focus on reliability engineering.
-                </p>
-              </div>
-              <div className="rounded-3xl border border-brand/10 bg-white/90 p-8 shadow-xl backdrop-blur">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-brand">
-                  Where teams struggle
-                </h3>
-                <p className="mt-3 text-sm text-slate-600">
-                  Maintenance leaders told us the real blockers aren&apos;t lack of
-                  effort—they&apos;re lack of visibility, coordination, and technology that fits the
-                  factory floor. Maintafox answers each blocker with automation and insight.
-                </p>
-                <div className="mt-6 grid gap-4 text-xs text-slate-500 sm:grid-cols-2">
-                  <div className="rounded-2xl bg-brand/5 px-4 py-3 font-semibold text-brand">
-                    68% cite data scattered across spreadsheets
-                  </div>
-                  <div className="rounded-2xl bg-accent/10 px-4 py-3 font-semibold text-accent">
-                    3× faster audits once everything is traceable
-                  </div>
-                  <div className="rounded-2xl bg-slate-100 px-4 py-3 font-semibold text-slate-600">
-                    Technicians adopt Maintafox mobile in under a week
-                  </div>
-                  <div className="rounded-2xl bg-white px-4 py-3 font-semibold text-brand shadow-sm">
-                    Supervisors reclaim 8+ hours monthly from reporting
-                  </div>
-                </div>
-              </div>
+        {/* Pain points - Alternating layout */}
+        <MotionSection id="benefits" className="section">
+          <div className="container-12">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-4xl font-bold text-brand">
+                The hidden cost of reactive maintenance
+              </h2>
+              <p className="mt-4 text-lg text-slate-600">
+                Maintafox eliminates firefighting and transforms fragmented workflows into a
+                centralized, intelligent system.
+              </p>
             </div>
-            <div className="relative">
-              <div
-                className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-accent/40 via-brand/30 to-transparent"
-                aria-hidden="true"
-              />
-              <ul className="space-y-10">
-                {painpoints.map(({ title, desc, Icon }, index) => (
-                  <li key={title} className="relative pl-16">
-                    <div className="absolute left-0 top-1 flex h-12 w-12 items-center justify-center rounded-full border border-white bg-brand text-base font-semibold text-white shadow-lg">
-                      {index + 1}
-                    </div>
-                    <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/90 p-7 shadow-sm backdrop-blur">
-                      <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
-                        <span className="grid h-10 w-10 place-items-center rounded-full bg-accent/10 text-accent">
-                          <Icon className="h-5 w-5" />
-                        </span>
-                        <div>
-                          <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-                          <p className="mt-2 text-sm text-slate-600">{desc}</p>
-                        </div>
+
+            <div className="mt-16 space-y-12">
+              {painpoints.map(({ title, desc, Icon }, index) => (
+                <div
+                  key={title}
+                  className={`group grid items-center gap-8 lg:grid-cols-2 ${
+                    index % 2 === 1 ? 'lg:grid-flow-dense' : ''
+                  }`}
+                >
+                  {/* Icon side */}
+                  <div className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                    <div className="relative mx-auto flex h-64 w-64 items-center justify-center">
+                      {/* Animated background rings */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/20 to-blue-500/20 blur-2xl transition-all group-hover:scale-110" />
+                      <div className="absolute inset-4 rounded-full bg-white ring-1 ring-slate-200 transition-all group-hover:ring-accent" />
+                      <div className="relative grid h-24 w-24 place-items-center rounded-2xl bg-gradient-to-br from-accent to-orange-600 text-white shadow-xl transition-all group-hover:scale-110 group-hover:rotate-3">
+                        <Icon className="h-12 w-12" strokeWidth={1.5} />
                       </div>
                     </div>
-                  </li>
-                ))}
-              </ul>
+                  </div>
+
+                  {/* Content side */}
+                  <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
+                    <div className="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-100 transition-all group-hover:shadow-xl">
+                      <h3 className="text-2xl font-bold text-brand">{title}</h3>
+                      <p className="mt-4 text-slate-600 leading-relaxed">{desc}</p>
+                      <div className="mt-6 flex items-center gap-2 text-accent font-semibold">
+                        <span>Learn how Maintafox solves this</span>
+                        <svg
+                          className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </MotionSection>
+        {/* Feature pillars - Split screen with diagonal */}
+        <MotionSection id="features" className="section section-muted relative overflow-hidden">
+          {/* Diagonal background split */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-blue-50" />
+            <div
+              className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-br from-accent/5 to-orange-50"
+              style={{ clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0 100%)' }}
+            />
+          </div>
 
-        {/* Feature pillars */}
-        <MotionSection id="features" className="section">
-          <div className="container-12">
-            <div className="max-w-3xl">
-              <h2 className="text-3xl font-semibold text-brand">
-                Powerful CMMS features, delivered with local expertise
+          <div className="container-12 relative">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-4xl font-bold text-brand">
+                Six pillars of maintenance excellence
               </h2>
-              <p className="mt-3 text-slate-600">
-                Maintafox combines asset management, work execution, inventory, and analytics in one
-                intuitive platform. Each module is localized for Algerian regulatory requirements,
-                currencies, and bilingual teams.
+              <p className="mt-4 text-lg text-slate-600">
+                Every module shares a unified data model and adapts to Algerian regulatory
+                frameworks.
               </p>
             </div>
-            <div className="mt-12 space-y-10">
+
+            <div className="mt-16 grid gap-6 lg:grid-cols-3">
               {featureHighlights.map(({ title, bullets, Icon }, index) => (
-                <article
-                  key={title}
-                  className={cn(
-                    'relative overflow-hidden rounded-[32px] border border-brand/10 bg-white/80 shadow-lg backdrop-blur transition duration-300 hover:border-accent/40 hover:shadow-xl lg:grid lg:grid-cols-2',
-                    index % 2 === 1 && 'lg:[&>div:first-child]:order-last'
-                  )}
-                >
-                  <div
-                    className="absolute inset-0 bg-gradient-to-br from-brand/5 via-white/40 to-accent/10 opacity-80"
-                    aria-hidden="true"
-                  />
-                  <div className="relative flex flex-col gap-6 p-10">
-                    <div className="flex items-center gap-4">
-                      <span className="grid h-12 w-12 place-items-center rounded-full bg-accent/10 text-accent">
-                        <Icon className="h-5 w-5" />
-                      </span>
-                      <h3 className="text-2xl font-semibold text-brand">{title}</h3>
+                <article key={title} className="group relative">
+                  {/* Hover glow effect */}
+                  <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-accent/0 via-accent/50 to-blue-500/50 opacity-0 blur transition-opacity group-hover:opacity-100" />
+
+                  <div className="relative flex h-full flex-col rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-200 transition-all group-hover:shadow-2xl">
+                    {/* Icon header with gradient background */}
+                    <div className="mb-6 inline-flex">
+                      <div className="relative">
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-accent to-orange-600 blur-md opacity-50" />
+                        <div className="relative grid h-14 w-14 place-items-center rounded-xl bg-gradient-to-br from-accent to-orange-600 text-white shadow-lg">
+                          <Icon className="h-7 w-7" strokeWidth={1.5} />
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-sm text-slate-600">
-                      Maintafox pairs localized workflows with automation so your team can hit
-                      reliability targets without extra headcount.
-                    </p>
-                    <div className="mt-auto flex flex-wrap gap-3 text-xs text-slate-500">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 font-semibold text-brand shadow-sm">
-                        <Activity className="h-3.5 w-3.5" /> Built for Algerian plants
-                      </span>
-                      <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 font-semibold text-accent">
-                        <Layers className="h-3.5 w-3.5" /> Module ready
-                      </span>
-                    </div>
-                  </div>
-                  <div className="relative border-t border-slate-200 bg-white/95 p-10 lg:border-t-0 lg:border-l lg:border-slate-200">
-                    <span
-                      className="absolute left-0 top-6 hidden h-12 w-1 rounded-full bg-gradient-to-b from-accent/70 via-brand/60 to-transparent lg:block"
-                      aria-hidden="true"
-                    />
-                    <ul className="space-y-4 text-sm text-slate-600">
-                      {bullets.map((bullet) => (
-                        <li
-                          key={bullet}
-                          className="flex items-start gap-3 rounded-2xl bg-slate-50/60 px-4 py-3 shadow-sm"
-                        >
-                          <CheckCheck className="mt-1 h-4 w-4 flex-none text-accent" />
-                          <span>{bullet}</span>
+
+                    <h3 className="text-xl font-bold text-brand">{title}</h3>
+
+                    <ul className="mt-6 space-y-4 text-sm text-slate-600">
+                      {bullets.map((point, idx) => (
+                        <li key={point} className="flex gap-3">
+                          <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                            <span className="text-xs font-bold">{idx + 1}</span>
+                          </span>
+                          <span className="leading-relaxed">{point}</span>
                         </li>
                       ))}
                     </ul>
+
+                    {/* Hover reveal footer */}
+                    <div className="mt-6 pt-6 border-t border-slate-100 opacity-0 transition-opacity group-hover:opacity-100">
+                      <Link
+                        href="/features"
+                        className="flex items-center gap-2 text-sm font-semibold text-accent"
+                      >
+                        <span>Explore in detail</span>
+                        <svg
+                          className="h-4 w-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 </article>
               ))}
             </div>
           </div>
         </MotionSection>
+        {/* KPI highlights - Visual metrics with progress */}
+        <MotionSection
+          id="kpis"
+          className="section bg-gradient-to-br from-slate-900 to-brand text-white relative overflow-hidden"
+        >
+          {/* Animated background */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute left-1/3 top-1/3 h-96 w-96 rounded-full bg-accent blur-[100px] animate-pulse" />
+            <div
+              className="absolute right-1/3 bottom-1/3 h-96 w-96 rounded-full bg-blue-500 blur-[100px] animate-pulse"
+              style={{ animationDelay: '1s' }}
+            />
+          </div>
 
-        {/* KPI highlights */}
-        <MotionSection id="kpis" className="section section-muted">
-          <div className="container-12 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="relative overflow-hidden rounded-[36px] border border-brand/10 bg-white/80 p-10 shadow-xl backdrop-blur">
-              <div
-                className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-brand/20 via-transparent to-transparent"
-                aria-hidden="true"
-              />
-              <div
-                className="absolute -right-24 bottom-0 h-48 w-48 rounded-full bg-accent/20 blur-3xl"
-                aria-hidden="true"
-              />
-              <div className="relative">
-                <h3 className="text-2xl font-semibold text-brand">Maintenance KPIs dialed in</h3>
-                <p className="mt-3 max-w-xl text-sm text-slate-600">
-                  Maintafox captures every meter reading, work order, and inventory movement to keep
-                  your reliability scorecard current. Drill into the data without exporting
-                  spreadsheets.
-                </p>
-                <div className="mt-10 grid gap-6 sm:grid-cols-2">
-                  {kpiMetrics.map((metric, index) => (
-                    <div
-                      key={metric.label}
-                      className={cn(
-                        'group relative overflow-hidden rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl',
-                        index % 2 === 1 && 'sm:-translate-y-6'
-                      )}
-                    >
-                      <span
-                        className="absolute inset-0 bg-gradient-to-br from-brand/5 via-transparent to-accent/10 opacity-0 transition group-hover:opacity-100"
-                        aria-hidden="true"
-                      />
-                      <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                        KPI {index + 1}
-                      </div>
-                      <div className="mt-3 text-3xl font-bold text-brand">{metric.value}</div>
-                      <div className="mt-2 text-sm font-semibold text-slate-500">
-                        {metric.label}
-                      </div>
-                      <p className="mt-3 text-xs text-slate-500">{metric.detail}</p>
-                      <div className="mt-4 h-1.5 rounded-full bg-slate-200">
-                        <span
-                          className="block h-full rounded-full bg-gradient-to-r from-brand to-accent"
-                          style={{ width: `${kpiProgress[index]}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+          <div className="container-12 relative">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-4xl font-bold">Results that speak louder than promises</h2>
+              <p className="mt-4 text-lg text-slate-300">
+                Real performance data from Algerian plants using Maintafox CMMS.
+              </p>
             </div>
-            <div className="relative overflow-hidden rounded-[36px] border border-brand/10 bg-slate-900/95 p-10 text-slate-100 shadow-xl">
-              <div
-                className="absolute -left-20 top-10 h-48 w-48 rounded-full bg-brand/30 blur-3xl"
-                aria-hidden="true"
-              />
-              <div className="relative space-y-6">
-                <h3 className="text-2xl font-semibold text-white">Reliability momentum tracker</h3>
-                <p className="text-sm text-slate-300">
-                  Visualize progress toward world-class reliability benchmarks. Maintafox benchmarks
-                  your facility against peers and flags where to focus next.
-                </p>
-                <ol className="space-y-5 text-sm">
-                  {kpiMetrics.map((metric, index) => (
-                    <li key={metric.label} className="flex items-start gap-4">
-                      <span className="mt-1 grid h-8 w-8 place-items-center rounded-full border border-white/40 bg-white/10 text-xs font-semibold text-white">
-                        {index + 1}
-                      </span>
-                      <div>
-                        <div className="font-semibold text-accent">{metric.value}</div>
-                        <p className="text-xs text-slate-300">{metric.label}</p>
+
+            <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                {
+                  label: 'Mean Time To Repair',
+                  value: '1.8',
+                  unit: 'hours',
+                  detail: 'Faster resolution with guided workflows',
+                  color: 'from-accent to-orange-400',
+                },
+                {
+                  label: 'Mean Time Between Failures',
+                  value: '120',
+                  unit: 'days',
+                  detail: 'Extended asset health via PM compliance',
+                  color: 'from-blue-400 to-brand-accent',
+                },
+                {
+                  label: 'Asset Uptime',
+                  value: '99.2',
+                  unit: '%',
+                  detail: 'Planned maintenance reduces surprises',
+                  color: 'from-emerald-400 to-green-500',
+                },
+                {
+                  label: 'PM Compliance',
+                  value: '94',
+                  unit: '%',
+                  detail: 'Automated scheduling boosts adherence',
+                  color: 'from-accent to-orange-400',
+                },
+              ].map((metric, index) => (
+                <div
+                  key={metric.label}
+                  className="group relative"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {/* Card with glassmorphism */}
+                  <div className="relative overflow-hidden rounded-2xl bg-white/10 p-8 backdrop-blur-xl ring-1 ring-white/20 transition-all hover:bg-white/20 hover:scale-105">
+                    {/* Top gradient bar */}
+                    <div
+                      className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${metric.color}`}
+                    />
+
+                    {/* Large number */}
+                    <div className="relative">
+                      <div
+                        className={`text-5xl font-bold bg-gradient-to-r ${metric.color} bg-clip-text text-transparent`}
+                      >
+                        {metric.value}
                       </div>
-                    </li>
-                  ))}
-                </ol>
-                <div className="rounded-3xl border border-white/10 bg-white/10 p-6 text-xs text-slate-200">
-                  <p>
-                    Reliability index updated in real time. Combine CMMS data with SCADA, ERP, and
-                    IoT feeds to forecast failures before they disrupt production.
-                  </p>
-                  <p className="mt-3 text-[11px] uppercase tracking-[0.3em] text-white/70">
-                    Average ROI achieved in 9 months
-                  </p>
+                      <div className="text-lg font-semibold text-slate-300">{metric.unit}</div>
+                    </div>
+
+                    {/* Label */}
+                    <div className="mt-4 text-sm font-semibold uppercase tracking-wider text-slate-400">
+                      {metric.label}
+                    </div>
+
+                    {/* Detail text - reveals on hover */}
+                    <p className="mt-3 text-xs leading-relaxed text-slate-400 opacity-0 transition-opacity group-hover:opacity-100">
+                      {metric.detail}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </MotionSection>
-
         {/* How it works timeline */}
         <MotionSection id="how-it-works" className="section">
           <div className="container-12">
@@ -660,238 +639,355 @@ export default function HomePage() {
             </div>
           </div>
         </MotionSection>
+        {/* Testimonials - Quote-forward design */}
+        <MotionSection id="testimonials" className="section bg-white relative overflow-hidden">
+          {/* Decorative quote marks */}
+          <div className="absolute top-10 left-10 text-[200px] font-serif text-accent/5 leading-none">
+            &ldquo;
+          </div>
+          <div className="absolute bottom-10 right-10 text-[200px] font-serif text-brand/5 leading-none rotate-180">
+            &rdquo;
+          </div>
 
-        {/* Testimonials */}
-        <MotionSection id="testimonials" className="section section-muted">
-          <div className="container-12 grid gap-12 lg:grid-cols-[0.6fr_1.4fr]">
-            <div className="space-y-6">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brand shadow-sm">
-                <Sparkles className="h-4 w-4" /> Proven in the field
-              </span>
-              <h2 className="text-3xl font-semibold text-brand">
-                Customer stories from across Algeria
-              </h2>
-              <p className="text-slate-600">
-                Maintafox partners closely with maintenance leaders to deliver tangible ROI,
-                stronger reliability, and safer operations. Hear how maintenance directors,
-                reliability engineers, and supervisors transformed their workflows with our CMMS.
+          <div className="container-12 relative">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-4xl font-bold text-brand">Loved by maintenance professionals</h2>
+              <p className="mt-4 text-lg text-slate-600">
+                Hear from Algerian plant managers, reliability engineers, and technicians who trust
+                Maintafox every day.
               </p>
-              <div className="rounded-3xl border border-brand/10 bg-white/90 p-6 text-sm text-slate-600 shadow-xl backdrop-blur">
-                <p>
-                  “We achieved audit readiness in record time. Maintafox reduced manual reporting,
-                  centralized work orders, and let executives monitor every asset in real time.”
-                </p>
-                <p className="mt-3 text-xs text-slate-400">
-                  – Group Maintenance Manager, Energy &amp; Utilities
-                </p>
-              </div>
             </div>
-            <div className="relative rounded-[42px] border border-brand/10 bg-white/70 p-10 shadow-xl backdrop-blur">
-              <div
-                className="absolute -right-10 top-8 h-32 w-32 rounded-full bg-accent/20 blur-3xl"
-                aria-hidden="true"
-              />
-              <div
-                className="absolute -left-12 bottom-4 h-40 w-40 rounded-full bg-brand/20 blur-3xl"
-                aria-hidden="true"
-              />
-              <div className="relative grid gap-6 sm:grid-cols-2">
-                {testimonialQuotes.map((testimonial, index) => (
-                  <figure
-                    key={testimonial.quote}
-                    className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-                  >
-                    <span
-                      className="absolute -top-6 left-6 text-7xl font-serif text-accent/20"
-                      aria-hidden="true"
-                    >
-                      &ldquo;
-                    </span>
-                    <blockquote className="relative text-sm text-slate-600">
+
+            {/* Staggered testimonials */}
+            <div className="mt-16 grid gap-8 lg:grid-cols-2">
+              {[
+                {
+                  quote:
+                    'Maintafox transformed our reactive culture into a proactive maintenance environment. The mobile CMMS and spare parts tracking reduced unplanned downtime by 40% in six months.',
+                  author: 'Karim B.',
+                  role: 'Maintenance Manager',
+                  company: 'Leading Chemical Plant',
+                  location: 'Skikda, Algeria',
+                },
+                {
+                  quote:
+                    'The work order system with barcode scanning is a game-changer. Technicians love the offline-first mobile app, and we finally have accurate labor and parts cost data for budgeting.',
+                  author: 'Amina L.',
+                  role: 'Reliability Engineer',
+                  company: 'Steel Manufacturing',
+                  location: 'Annaba, Algeria',
+                },
+                {
+                  quote:
+                    'Automated PM scheduling ensures we never miss critical inspections. The calendar heatmap and KPI dashboard help us demonstrate maintenance value to senior leadership.',
+                  author: 'Yacine M.',
+                  role: 'Plant Manager',
+                  company: 'Pharmaceutical Production',
+                  location: 'Constantine, Algeria',
+                },
+                {
+                  quote:
+                    'Integration with our IoT sensors for condition monitoring is seamless. Real-time alerts help us prevent failures before they happen, improving both safety and productivity.',
+                  author: 'Sofiane K.',
+                  role: 'Operations Director',
+                  company: 'Oil & Gas Facility',
+                  location: 'Hassi Messaoud, Algeria',
+                },
+              ].map((testimonial, index) => (
+                <div
+                  key={testimonial.author}
+                  className={`group relative ${index % 2 === 0 ? 'lg:translate-y-8' : ''}`}
+                >
+                  {/* Card */}
+                  <div className="relative rounded-3xl bg-gradient-to-br from-slate-50 to-white p-8 shadow-xl ring-1 ring-slate-200 transition-all hover:shadow-2xl hover:-translate-y-1">
+                    {/* Accent corner */}
+                    <div className="absolute top-0 right-0 h-20 w-20 rounded-bl-full rounded-tr-3xl bg-gradient-to-br from-accent/20 to-transparent" />
+
+                    {/* Large quote */}
+                    <div className="text-5xl font-serif text-accent/30">&ldquo;</div>
+
+                    {/* Quote text */}
+                    <p className="mt-2 text-lg leading-relaxed text-slate-700">
                       {testimonial.quote}
-                    </blockquote>
-                    <figcaption className="mt-5 text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-                      <span className="text-brand">{testimonial.name}</span>
-                      <span className="mt-1 block text-[10px] text-slate-400">
-                        {testimonial.company}
-                      </span>
-                    </figcaption>
-                    <span className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold text-brand">
-                      <Sparkles className="h-3.5 w-3.5" /> Success #{index + 1}
-                    </span>
-                  </figure>
-                ))}
-              </div>
-            </div>
-          </div>
-        </MotionSection>
+                    </p>
 
-        {/* Industries */}
-        <MotionSection id="industries" className="section">
-          <div className="container-12 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl font-semibold text-brand">
-                Purpose-built for mission-critical industries
-              </h2>
-              <p className="mt-3 text-slate-600">
-                Maintafox adapts to the way your maintenance organization works. Our domain experts
-                bring field experience from manufacturing, energy, transportation, real estate, and
-                government sectors across the MENA region.
-              </p>
-              <p className="mt-4 text-slate-600">
-                Each deployment includes industry-specific templates, KPI dashboards, and regulatory
-                checklists to accelerate adoption.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3 text-xs text-slate-500">
-                <span className="inline-flex items-center gap-2 rounded-full bg-brand/5 px-3 py-1 font-semibold text-brand">
-                  <Wrench className="h-3.5 w-3.5" /> Heavy industry ready
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 font-semibold text-accent">
-                  <ShieldCheck className="h-3.5 w-3.5" /> Compliance assured
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 font-semibold text-slate-600">
-                  <Smartphone className="h-3.5 w-3.5" /> Mobile workforce
-                </span>
-              </div>
-            </div>
-            <div className="rounded-[34px] border border-brand/10 bg-white/80 p-8 shadow-lg backdrop-blur">
-              <div className="grid gap-3 sm:grid-cols-2">
-                {industriesServed.map((industry) => (
-                  <div
-                    key={industry}
-                    className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white px-4 py-5 text-sm text-slate-600 shadow-sm"
-                  >
-                    <span
-                      className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-brand via-accent to-transparent"
-                      aria-hidden="true"
-                    />
-                    <span className="font-semibold text-brand">{industry}</span>
+                    {/* Attribution */}
+                    <div className="mt-6 flex items-center gap-4">
+                      {/* Avatar placeholder with gradient */}
+                      <div className="h-12 w-12 rounded-full bg-gradient-to-br from-accent to-brand flex items-center justify-center text-white font-bold text-lg">
+                        {testimonial.author.charAt(0)}
+                      </div>
+
+                      <div className="flex-1">
+                        <div className="font-semibold text-brand">{testimonial.author}</div>
+                        <div className="text-sm text-slate-600">{testimonial.role}</div>
+                        <div className="text-xs text-slate-500">
+                          {testimonial.company} • {testimonial.location}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </MotionSection>
-
-        {/* Pricing */}
+        {/* Industries served */}
+        <MotionSection className="section">
+          <div className="container-12">
+            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <h2 className="text-3xl font-semibold text-brand">
+                  Purpose-built for mission-critical industries
+                </h2>
+                <p className="mt-3 text-slate-600">
+                  Maintafox adapts to the way your maintenance organization works. Our domain
+                  experts bring field experience from manufacturing, energy, transportation, real
+                  estate, and government sectors across the MENA region.
+                </p>
+                <p className="mt-4 text-slate-600">
+                  Each deployment includes industry-specific templates, KPI dashboards, and
+                  regulatory checklists to accelerate adoption.
+                </p>
+              </div>
+              <ul className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:grid-cols-2">
+                {industriesServed.map((industry) => (
+                  <li key={industry} className="flex items-center gap-3 text-sm text-slate-600">
+                    <span className="h-2 w-2 rounded-full bg-brand" aria-hidden="true" />
+                    <span>{industry}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </MotionSection>
+        {/* Pricing - Highlighted comparison */}
         <MotionSection id="pricing" className="section section-muted">
           <div className="container-12">
-            <div className="max-w-3xl">
-              <h2 className="text-3xl font-semibold text-brand">
-                Flexible pricing that scales with your maintenance maturity
-              </h2>
-              <p className="mt-3 text-slate-600">
-                Transparent subscription plans with optional on-premise deployment and
-                enterprise-grade support. All plans include onboarding, localized training, and
-                access to new CMMS features.
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-4xl font-bold text-brand">Simple, transparent pricing</h2>
+              <p className="mt-4 text-lg text-slate-600">
+                Choose the plan that fits your facility size and needs. All plans include core CMMS
+                features, mobile apps, and local support.
               </p>
             </div>
-            <div className="mt-12 flex flex-col gap-8 lg:flex-row">
-              {pricingPlans.map((plan) => {
-                const isFeatured = plan.name === 'Scale';
+
+            <div className="mt-16 grid gap-8 lg:grid-cols-3">
+              {pricingPlans.map((plan, index) => {
+                const isHighlighted = index === 1; // Highlight the middle plan
                 return (
                   <div
                     key={plan.name}
-                    className={cn(
-                      'relative flex-1 overflow-hidden rounded-[32px] border border-brand/10 bg-white/85 p-8 shadow-lg backdrop-blur transition duration-300 hover:-translate-y-2 hover:shadow-2xl',
-                      isFeatured ? 'lg:-mt-8 lg:mb-8' : 'lg:mt-6'
-                    )}
+                    className={`relative rounded-3xl p-8 transition-all ${
+                      isHighlighted
+                        ? 'bg-gradient-to-br from-brand to-brand-dark text-white shadow-2xl scale-105 ring-4 ring-accent/50'
+                        : 'bg-white shadow-lg ring-1 ring-slate-200 hover:shadow-xl'
+                    }`}
                   >
-                    <div
-                      className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-brand/15 via-transparent to-transparent"
-                      aria-hidden="true"
-                    />
-                    {isFeatured && (
-                      <span className="absolute right-6 top-6 inline-flex items-center gap-2 rounded-full bg-brand text-white px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.3em]">
-                        <Sparkles className="h-3.5 w-3.5" /> Most popular
-                      </span>
+                    {/* Popular badge */}
+                    {isHighlighted && (
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-accent px-6 py-1 text-sm font-semibold text-white shadow-lg">
+                        Most Popular
+                      </div>
                     )}
-                    <div className="relative flex h-full flex-col">
-                      <div className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+
+                    {/* Plan header */}
+                    <div className="text-center">
+                      <h3
+                        className={`text-2xl font-bold ${
+                          isHighlighted ? 'text-white' : 'text-brand'
+                        }`}
+                      >
                         {plan.name}
-                      </div>
-                      <div className="mt-4 text-3xl font-semibold text-brand">{plan.price}</div>
-                      <p className="mt-3 text-sm text-slate-600">{plan.desc}</p>
-                      <ul className="mt-6 space-y-3 text-sm text-slate-600">
-                        {plan.items.map((item) => (
-                          <li key={item} className="flex items-start gap-3">
-                            <span
-                              className="mt-1 h-2 w-2 rounded-full bg-accent"
-                              aria-hidden="true"
-                            />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="mt-8 flex flex-col gap-3 text-xs text-slate-500">
-                        <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1">
-                          <ShieldCheck className="h-3.5 w-3.5 text-brand" /> Security-first
-                          deployment
-                        </span>
-                        <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1">
-                          <Activity className="h-3.5 w-3.5 text-accent" /> Reliability support
-                          included
-                        </span>
-                      </div>
-                      <div className="mt-8">
-                        <Link
-                          href="/demo"
-                          className={cn(
-                            'inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition',
-                            isFeatured
-                              ? 'bg-brand text-white hover:bg-brand/90'
-                              : 'border border-brand/20 text-brand hover:bg-brand/5'
-                          )}
+                      </h3>
+                      <p
+                        className={`mt-2 text-sm ${
+                          isHighlighted ? 'text-slate-200' : 'text-slate-600'
+                        }`}
+                      >
+                        {plan.desc}
+                      </p>
+
+                      <div className="mt-6">
+                        <span
+                          className={`text-5xl font-bold ${
+                            isHighlighted ? 'text-white' : 'text-brand'
+                          }`}
                         >
-                          Talk to Sales
-                        </Link>
+                          {plan.price.split(' / ')[0]}
+                        </span>
+                        {plan.price.includes('/') && (
+                          <span
+                            className={`ml-2 text-sm ${
+                              isHighlighted ? 'text-slate-200' : 'text-slate-600'
+                            }`}
+                          >
+                            / {plan.price.split(' / ')[1]}
+                          </span>
+                        )}
                       </div>
                     </div>
+
+                    {/* CTA button */}
+                    <a
+                      href="/demo"
+                      className={`mt-8 block w-full rounded-xl py-3 text-center font-semibold transition-all ${
+                        isHighlighted
+                          ? 'bg-accent text-white shadow-lg hover:bg-orange-600 hover:shadow-xl'
+                          : 'bg-brand text-white hover:bg-brand-dark'
+                      }`}
+                    >
+                      {plan.name === 'Enterprise' ? 'Contact Sales' : 'Start Free Trial'}
+                    </a>
+
+                    {/* Features list */}
+                    <ul className="mt-8 space-y-3">
+                      {plan.items.map((item, featureIndex) => (
+                        <li key={featureIndex} className="flex items-start gap-3">
+                          <div
+                            className={`mt-0.5 h-5 w-5 flex-shrink-0 rounded-full flex items-center justify-center ${
+                              isHighlighted ? 'bg-accent/20' : 'bg-brand/10'
+                            }`}
+                          >
+                            <svg
+                              className={`h-3 w-3 ${isHighlighted ? 'text-white' : 'text-brand'}`}
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={3}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          </div>
+                          <span
+                            className={`text-sm ${isHighlighted ? 'text-white' : 'text-slate-700'}`}
+                          >
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 );
               })}
             </div>
+
+            {/* Bottom note */}
+            <div className="mt-12 text-center">
+              <p className="text-slate-600">
+                All plans include a{' '}
+                <span className="font-semibold text-brand">30-day free trial</span> with no credit
+                card required.
+                <a href="/demo" className="ml-1 font-semibold text-accent hover:underline">
+                  Request a demo
+                </a>{' '}
+                to see Maintafox in action.
+              </p>
+            </div>
           </div>
         </MotionSection>
-
-        {/* Resources CTA */}
+        {/* Resources CTA - Split design with contrasts */}
         <MotionSection className="section">
           <div className="container-12">
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-                <h3 className="text-xl font-semibold text-brand">
-                  Download the Maintafox CMMS Buyer&apos;s Guide
-                </h3>
-                <p className="mt-3 text-sm text-slate-600">
-                  Learn how to evaluate computerized maintenance management systems, calculate ROI,
-                  and build stakeholder alignment. The guide includes checklists, KPI benchmarks,
-                  and an implementation roadmap.
-                </p>
-                <Link
-                  href="/contact"
-                  className="mt-6 inline-flex items-center text-brand underline-offset-4 hover:underline"
-                >
-                  Request the PDF guide
-                </Link>
+              {/* Left card - Light theme with icon */}
+              <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-50 to-white p-10 shadow-xl ring-1 ring-slate-200 transition-all hover:shadow-2xl hover:-translate-y-1">
+                {/* Icon badge */}
+                <div className="absolute -top-6 -right-6 h-32 w-32 rounded-full bg-gradient-to-br from-brand/10 to-accent/10 blur-2xl" />
+
+                <div className="relative">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand to-brand-dark shadow-lg">
+                    <svg
+                      className="h-7 w-7 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      />
+                    </svg>
+                  </div>
+
+                  <h3 className="mt-6 text-2xl font-bold text-brand">CMMS Buyer&apos;s Guide</h3>
+                  <p className="mt-3 text-slate-600 leading-relaxed">
+                    Learn how to evaluate computerized maintenance management systems, calculate
+                    ROI, and build stakeholder alignment. The guide includes checklists, KPI
+                    benchmarks, and an implementation roadmap.
+                  </p>
+
+                  <Link
+                    href="/contact"
+                    className="mt-6 inline-flex items-center gap-2 font-semibold text-brand transition-all hover:gap-3"
+                  >
+                    Request the PDF guide
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Link>
+                </div>
               </div>
-              <div className="rounded-2xl border border-slate-200 bg-slate-900/90 p-8 text-white shadow-sm">
-                <h3 className="text-xl font-semibold">Maintenance excellence webinar series</h3>
-                <p className="mt-3 text-sm text-slate-200">
-                  Join our monthly live sessions covering reliability-centered maintenance, spare
-                  part optimization, and asset performance analytics tailored for Algerian
-                  industries.
-                </p>
-                <Link
-                  href="/demo"
-                  className="mt-6 inline-flex items-center text-brand-accent underline-offset-4 hover:underline"
-                >
-                  Reserve your seat
-                </Link>
+
+              {/* Right card - Dark theme with gradient */}
+              <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-brand-dark to-slate-900 p-10 text-white shadow-xl transition-all hover:shadow-2xl hover:-translate-y-1">
+                {/* Animated glow */}
+                <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-accent/30 blur-3xl animate-pulse" />
+
+                <div className="relative">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/20 backdrop-blur-sm ring-1 ring-accent/50">
+                    <svg
+                      className="h-7 w-7 text-accent"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
+
+                  <h3 className="mt-6 text-2xl font-bold">Maintenance Excellence Webinar Series</h3>
+                  <p className="mt-3 text-slate-200 leading-relaxed">
+                    Join our monthly live sessions covering reliability-centered maintenance, spare
+                    part optimization, and asset performance analytics tailored for Algerian
+                    industries.
+                  </p>
+
+                  <Link
+                    href="/demo"
+                    className="mt-6 inline-flex items-center gap-2 font-semibold text-accent transition-all hover:gap-3"
+                  >
+                    Reserve your seat
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </MotionSection>
-
         {/* FAQ */}
         <MotionSection id="faq" className="section section-muted">
           <div className="container-12">
@@ -923,7 +1019,6 @@ export default function HomePage() {
             </div>
           </div>
         </MotionSection>
-
         {/* Final CTA */}
         <MotionSection className="section">
           <div className="container-12 text-center">

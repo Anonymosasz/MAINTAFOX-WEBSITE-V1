@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import logo from '@/assets/logo.webp';
-import UserMenu from './UserMenu';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,7 +44,6 @@ export default function Navbar() {
           <Link href="/demo" className="btn-primary">
             Request a Demo
           </Link>
-          <UserMenu />
         </div>
       </nav>
     </header>
