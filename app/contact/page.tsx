@@ -1,4 +1,10 @@
+'use client';
+
+import { useLanguage } from '@/contexts/LanguageContext';
+
 export default function ContactPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       <main>
@@ -28,19 +34,15 @@ export default function ContactPage() {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                Get in Touch
+                {t.contact.badge}
               </div>
               <h1 className="mt-6 text-5xl font-bold tracking-tight">
-                Let&apos;s Talk{' '}
+                {t.contact.title}{' '}
                 <span className="bg-gradient-to-r from-accent to-orange-400 bg-clip-text text-transparent">
-                  Maintenance Excellence
+                  {t.contact.titleHighlight}
                 </span>
               </h1>
-              <p className="mt-6 text-lg text-slate-200">
-                Whether you need a guided CMMS demo, implementation advice, or ongoing support, the
-                Maintafox team is ready to help. Reach out and we&apos;ll respond within one
-                business day.
-              </p>
+              <p className="mt-6 text-lg text-slate-200">{t.contact.subtitle}</p>
             </div>
 
             {/* Quick contact methods */}
@@ -65,7 +67,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div className="flex-1 text-left">
-                  <div className="text-sm font-medium text-slate-300">Email us</div>
+                  <div className="text-sm font-medium text-slate-300">{t.contact.emailUs}</div>
                   <div className="text-sm text-white group-hover:text-accent transition-colors">
                     contact@maintafox.systems
                   </div>
@@ -104,7 +106,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div className="flex-1 text-left">
-                  <div className="text-sm font-medium text-slate-300">Call us</div>
+                  <div className="text-sm font-medium text-slate-300">{t.contact.callUs}</div>
                   <div className="text-sm text-white group-hover:text-accent transition-colors">
                     +213 (540) 537-886
                   </div>
@@ -163,17 +165,15 @@ export default function ContactPage() {
                     />
                   </svg>
                 </div>
-                <h2 className="mt-4 text-xl font-bold text-brand">Sales & Demos</h2>
+                <h2 className="mt-4 text-xl font-bold text-brand">{t.contact.sales.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Tell us about your maintenance goals, facility size, and existing systems. Our
-                  solution consultants will tailor a CMMS walkthrough with relevant KPIs and
-                  reports.
+                  {t.contact.sales.description}
                 </p>
                 <a
                   href="/demo"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent transition-all hover:gap-3"
                 >
-                  Schedule a demo
+                  {t.contact.sales.cta}
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
                       strokeLinecap="round"
@@ -205,16 +205,15 @@ export default function ContactPage() {
                     />
                   </svg>
                 </div>
-                <h2 className="mt-4 text-xl font-bold text-brand">Customer Support</h2>
+                <h2 className="mt-4 text-xl font-bold text-brand">{t.contact.support.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Already a Maintafox customer? Our success team provides bilingual assistance and
-                  remote diagnostics 24/7 for critical issues.
+                  {t.contact.support.description}
                 </p>
                 <a
                   href="mailto:support@maintafox.systems"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand transition-all hover:gap-3"
                 >
-                  Contact support
+                  {t.contact.support.cta}
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
                       strokeLinecap="round"
@@ -252,18 +251,18 @@ export default function ContactPage() {
                     />
                   </svg>
                 </div>
-                <h2 className="mt-4 text-xl font-bold text-brand">Visit Our Office</h2>
+                <h2 className="mt-4 text-xl font-bold text-brand">{t.contact.office.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Technoparc Sidi Abdellah
+                  {t.contact.office.address}
                   <br />
-                  Dar El Beida, Algiers
+                  {t.contact.office.city}
                   <br />
-                  Algeria
+                  {t.contact.office.country}
                 </p>
                 <div className="mt-4 rounded-lg bg-white px-3 py-2 text-xs font-medium text-slate-600 ring-1 ring-slate-200">
-                  📅 Sunday – Thursday
+                  📅 {t.contact.office.hours}
                   <br />
-                  🕐 9:00 AM – 6:00 PM
+                  🕐 {t.contact.office.time}
                 </div>
               </div>
             </div>
@@ -291,18 +290,12 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h2 className="text-2xl font-bold text-brand">Planning Your Project?</h2>
-                  <p className="mt-2 text-slate-600">
-                    Share details about your maintenance environment to help us prepare the best
-                    solution for you:
-                  </p>
+                  <h2 className="text-2xl font-bold text-brand">
+                    {t.contact.projectQuestions.title}
+                  </h2>
+                  <p className="mt-2 text-slate-600">{t.contact.projectQuestions.description}</p>
                   <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                    {[
-                      'Managing multiple plants or facilities?',
-                      'On-premise, cloud, or hybrid deployment?',
-                      'Which ERPs, SCADA, or IoT to integrate?',
-                      'What KPIs define your success?',
-                    ].map((question, index) => (
+                    {t.contact.projectQuestions.questions.map((question, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent">
                           {index + 1}
@@ -325,10 +318,8 @@ export default function ContactPage() {
               <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
 
               <div className="relative mx-auto max-w-2xl text-center">
-                <h2 className="text-3xl font-bold">Stay Connected</h2>
-                <p className="mt-4 text-slate-200">
-                  Follow us for maintenance insights, product updates, and industry news
-                </p>
+                <h2 className="text-3xl font-bold">{t.contact.social.title}</h2>
+                <p className="mt-4 text-slate-200">{t.contact.social.subtitle}</p>
                 <div className="mt-8 flex justify-center gap-4">
                   <a
                     href="https://www.linkedin.com/company/maintafox-systems/"
@@ -339,7 +330,7 @@ export default function ContactPage() {
                     <svg className="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
-                    <span className="text-sm font-semibold">LinkedIn</span>
+                    <span className="text-sm font-semibold">{t.contact.social.linkedin}</span>
                   </a>
                   <a
                     href="https://www.facebook.com/share/1CGCAFfz8y/"
@@ -350,7 +341,7 @@ export default function ContactPage() {
                     <svg className="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                     </svg>
-                    <span className="text-sm font-semibold">Facebook</span>
+                    <span className="text-sm font-semibold">{t.contact.social.facebook}</span>
                   </a>
                 </div>
               </div>
@@ -377,17 +368,13 @@ export default function ContactPage() {
                   />
                 </svg>
               </div>
-              <h2 className="mt-6 text-2xl font-bold text-brand">Prefer Meeting in Person?</h2>
-              <p className="mt-3 text-slate-600">
-                We frequently host workshops and discovery sessions on-site with maintenance teams
-                across Algeria. Let us know your preferred dates, and we&apos;ll arrange a visit
-                with our consultants and product specialists.
-              </p>
+              <h2 className="mt-6 text-2xl font-bold text-brand">{t.contact.inPerson.title}</h2>
+              <p className="mt-3 text-slate-600">{t.contact.inPerson.description}</p>
               <a
                 href="/demo"
                 className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-accent to-orange-600 px-8 py-3 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
               >
-                Schedule an on-site visit
+                {t.contact.inPerson.cta}
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"

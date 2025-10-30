@@ -1,39 +1,41 @@
-const posts = [
-  {
-    title: 'How to build a proactive maintenance strategy with a CMMS',
-    category: 'Maintenance Strategy',
-    date: 'January 2025',
-    excerpt:
-      'Discover the seven steps to transition from reactive to proactive maintenance. Learn how Maintafox helps Algerian plants standardize work orders, enforce preventive maintenance, and track KPIs.',
-    readingTime: '8 min read',
-  },
-  {
-    title: 'Calculating MTTR, MTBF, and availability: formulas every reliability leader needs',
-    category: 'Analytics & KPIs',
-    date: 'December 2024',
-    excerpt:
-      'We break down core maintenance KPIs with real examples from manufacturing and energy operations. See how Maintafox dashboards visualize trends and trigger improvement actions.',
-    readingTime: '6 min read',
-  },
-  {
-    title: 'Digitalizing work orders for field technicians in remote sites',
-    category: 'Mobile Maintenance',
-    date: 'November 2024',
-    excerpt:
-      'Field technicians need offline-first tools to complete work safely. Learn best practices for mobile CMMS deployment, checklist design, and technician adoption across Algeria.',
-    readingTime: '7 min read',
-  },
-  {
-    title: 'Maintenance budgeting: linking spare parts, labor, and capital planning',
-    category: 'Finance & Planning',
-    date: 'October 2024',
-    excerpt:
-      'Use CMMS cost intelligence to align maintenance and finance teams. We explore how to track spend, forecast needs, and justify investments with Maintafox analytics.',
-    readingTime: '9 min read',
-  },
-];
+import { prisma } from '@/lib/prisma';
+import Link from 'next/link';
+import Image from 'next/image';
 
-export default function BlogPage() {
+export const metadata = {
+  title: 'Blog - Maintafox Insights',
+  description: 'Practical guides, benchmarks, and thought leadership on maintenance reliability, CMMS best practices, and digital transformation.',
+};
+
+async function getPosts() {
+  const posts = await prisma.post.findMany({
+    where: { status: 'APPROVED' },
+    include: {
+      author: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+        },
+      },
+      _count: {
+        select: {
+          comments: true,
+        },
+      },
+    },
+    orderBy: {
+      publishedAt: 'desc',
+    },
+    take: 20,
+  });
+
+  return posts;
+}
+
+export default async function BlogPage() {
+  const posts = await getPosts();
+
   return (
     <>
       <main>
@@ -64,6 +66,21 @@ export default function BlogPage() {
                 Practical guides, benchmarks, and thought leadership on maintenance reliability,
                 CMMS best practices, and digital transformation across Algerian industries.
               </p>
+              
+              <Link
+                href="/blog/create"
+                className="mt-8 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 font-semibold text-white shadow-lg transition-all hover:bg-orange-600 hover:shadow-xl hover:scale-105"
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                Write a Post
+              </Link>
             </div>
           </div>
 
@@ -86,54 +103,117 @@ export default function BlogPage() {
         {/* Blog posts with staggered cards */}
         <section className="section bg-slate-50">
           <div className="container-12">
-            <div className="grid gap-8 lg:grid-cols-2">
-              {posts.map((post, index) => (
-                <article
-                  key={post.title}
-                  className={`group relative flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-slate-200 transition-all hover:shadow-2xl hover:-translate-y-2 ${
-                    index % 2 === 0 ? 'lg:translate-y-4' : ''
-                  }`}
+            {posts.length === 0 ? (
+              <div className="text-center py-20">
+                <h2 className="text-2xl font-bold text-slate-700">No posts yet</h2>
+                <p className="mt-2 text-slate-600">Be the first to share your insights!</p>
+                <Link
+                  href="/blog/create"
+                  className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand px-6 py-3 font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
                 >
-                  {/* Category badge with gradient */}
-                  <div className="absolute top-6 right-6 z-10">
-                    <div className="rounded-full bg-gradient-to-r from-brand to-brand-dark px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-lg">
-                      {post.category}
-                    </div>
-                  </div>
-
-                  {/* Visual header with gradient */}
-                  <div className="relative h-48 bg-gradient-to-br from-brand/5 via-accent/5 to-slate-100 p-8">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
-                    <div className="relative flex h-full items-end">
-                      <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-orange-600 shadow-xl">
-                        <svg
-                          className="h-8 w-8 text-white"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                          />
-                        </svg>
+                  Create Post
+                </Link>
+              </div>
+            ) : (
+              <div className="grid gap-8 lg:grid-cols-2">
+                {posts.map((post, index) => (
+                  <Link
+                    key={post.id}
+                    href={`/blog/${post.slug}`}
+                    className={`group relative flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-slate-200 transition-all hover:shadow-2xl hover:-translate-y-2 ${
+                      index % 2 === 0 ? 'lg:translate-y-4' : ''
+                    }`}
+                  >
+                    {/* Category badge with gradient */}
+                    <div className="absolute top-6 right-6 z-10">
+                      <div className="rounded-full bg-gradient-to-r from-brand to-brand-dark px-4 py-1 text-xs font-semibold uppercase tracking-wider text-white shadow-lg">
+                        {post.category}
                       </div>
                     </div>
-                  </div>
 
-                  {/* Content */}
-                  <div className="flex flex-1 flex-col p-8">
-                    <h2 className="text-2xl font-bold text-brand leading-tight group-hover:text-accent transition-colors">
-                      {post.title}
-                    </h2>
-                    <p className="mt-4 flex-1 text-slate-600 leading-relaxed">{post.excerpt}</p>
+                    {/* Cover Image or Visual header */}
+                    {post.coverImage ? (
+                      <div className="relative h-48">
+                        <Image
+                          src={post.coverImage}
+                          alt={post.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative h-48 bg-gradient-to-br from-brand/5 via-accent/5 to-slate-100 p-8">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
+                        <div className="relative flex h-full items-end">
+                          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-orange-600 shadow-xl">
+                            <svg
+                              className="h-8 w-8 text-white"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
-                    {/* Meta info */}
-                    <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-4">
-                      <div className="flex items-center gap-4 text-xs text-slate-500">
-                        <span className="flex items-center gap-1">
+                    {/* Content */}
+                    <div className="flex flex-1 flex-col p-8">
+                      <h2 className="text-2xl font-bold text-brand leading-tight group-hover:text-accent transition-colors">
+                        {post.title}
+                      </h2>
+                      <p className="mt-4 flex-1 text-slate-600 leading-relaxed">{post.excerpt}</p>
+
+                      {/* Meta info */}
+                      <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-4">
+                        <div className="flex items-center gap-4 text-xs text-slate-500">
+                          <span className="flex items-center gap-1">
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              />
+                            </svg>
+                            {post.publishedAt
+                              ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+                                  year: 'numeric',
+                                  month: 'short',
+                                })
+                              : 'Draft'}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+                            {post.readingTime}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all">
+                          Read more
                           <svg
                             className="h-4 w-4"
                             fill="none"
@@ -144,49 +224,16 @@ export default function BlogPage() {
                               strokeLinecap="round"
                               strokeLinejoin="round"
                               strokeWidth={2}
-                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              d="M9 5l7 7-7 7"
                             />
                           </svg>
-                          {post.date}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <svg
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                          </svg>
-                          {post.readingTime}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all">
-                        Read more
-                        <svg
-                          className="h-4 w-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 

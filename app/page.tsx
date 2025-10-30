@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { MotionSection } from '@/components/motion/MotionSection';
+import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Activity,
   AlertTriangle,
@@ -180,6 +183,8 @@ const pricingPlans = [
 ];
 
 export default function HomePage() {
+  const { t } = useLanguage();
+
   return (
     <>
       <main>
@@ -198,50 +203,55 @@ export default function HomePage() {
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-xl backdrop-blur-sm ring-1 ring-white/20">
                   <Activity className="h-3.5 w-3.5 animate-pulse text-accent" />
                   <span className="bg-gradient-to-r from-white to-accent bg-clip-text text-transparent">
-                    Algeria&apos;s First Local CMMS
+                    {t.hero.badge}
                   </span>
                 </div>
 
                 <h1 className="mt-8 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
-                  Stop Fighting
+                  {t.hero.title1}
                   <span className="bg-gradient-to-r from-accent to-orange-300 bg-clip-text text-transparent">
                     {' '}
-                    Fires.
+                    {t.hero.title2}
                   </span>
                   <br />
-                  Start Building
+                  {t.hero.title3}
                   <span className="bg-gradient-to-r from-blue-400 to-brand-accent bg-clip-text text-transparent">
                     {' '}
-                    Reliability.
+                    {t.hero.title4}
                   </span>
                 </h1>
 
                 <p className="mt-6 text-lg leading-relaxed text-slate-300 lg:text-xl">
-                  A unified CMMS platform that transforms reactive maintenance into proactive
-                  strategy. Built in Algeria, for Algerian industries.
+                  {t.hero.subtitle}
                 </p>
 
                 {/* Stat pills */}
                 <div className="mt-8 flex flex-wrap gap-4">
                   <div className="group relative overflow-hidden rounded-2xl bg-white/10 px-6 py-4 backdrop-blur-sm ring-1 ring-white/20 transition-all hover:bg-white/20">
                     <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                    <div className="relative text-3xl font-bold text-white">-32%</div>
+                    <div className="relative text-3xl font-bold text-white">
+                      {t.hero.stat1Value}
+                    </div>
                     <div className="relative text-xs uppercase tracking-wider text-slate-300">
-                      Downtime
+                      {t.hero.stat1Label}
                     </div>
                   </div>
                   <div className="group relative overflow-hidden rounded-2xl bg-white/10 px-6 py-4 backdrop-blur-sm ring-1 ring-white/20 transition-all hover:bg-white/20">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                    <div className="relative text-3xl font-bold text-white">94%</div>
+                    <div className="relative text-3xl font-bold text-white">
+                      {t.hero.stat2Value}
+                    </div>
                     <div className="relative text-xs uppercase tracking-wider text-slate-300">
-                      PM Compliance
+                      {t.hero.stat2Label}
                     </div>
                   </div>
                   <div className="group relative overflow-hidden rounded-2xl bg-white/10 px-6 py-4 backdrop-blur-sm ring-1 ring-white/20 transition-all hover:bg-white/20">
                     <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                    <div className="relative text-3xl font-bold text-white">4-6w</div>
+                    <div className="relative text-3xl font-bold text-white">
+                      {t.hero.stat3Value}
+                    </div>
                     <div className="relative text-xs uppercase tracking-wider text-slate-300">
-                      Go-Live
+                      {t.hero.stat3Label}
                     </div>
                   </div>
                 </div>
@@ -252,84 +262,33 @@ export default function HomePage() {
                     href="/demo"
                     className="group relative overflow-hidden rounded-xl bg-accent px-8 py-4 font-semibold text-white shadow-xl transition-all hover:shadow-2xl hover:shadow-accent/50"
                   >
-                    <span className="relative z-10">Request a Live Demo</span>
+                    <span className="relative z-10">{t.hero.ctaPrimary}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-accent opacity-0 transition-opacity group-hover:opacity-100" />
                   </Link>
                   <Link
                     href="/features"
                     className="group rounded-xl border-2 border-white/30 px-8 py-4 font-semibold text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/10"
                   >
-                    Explore Platform
+                    {t.hero.ctaSecondary}
                   </Link>
                 </div>
               </div>
 
               {/* Floating dashboard preview */}
-              <div className="relative">
-                {/* Glow effect */}
-                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-accent/30 via-blue-500/30 to-accent/30 blur-3xl" />
-
-                {/* Dashboard card with 3D effect */}
-                <div className="relative transform-gpu rounded-2xl bg-white/95 p-1 shadow-2xl backdrop-blur-xl transition-transform hover:scale-[1.02]">
-                  <div className="overflow-hidden rounded-xl">
-                    {/* Header bar */}
-                    <div className="flex items-center justify-between border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white px-6 py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="flex gap-1.5">
-                          <div className="h-3 w-3 rounded-full bg-red-500" />
-                          <div className="h-3 w-3 rounded-full bg-yellow-500" />
-                          <div className="h-3 w-3 rounded-full bg-green-500" />
-                        </div>
-                        <span className="text-sm font-semibold text-slate-700">
-                          Real-time Dashboard
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-                        <span className="text-xs text-slate-500">Live</span>
-                      </div>
-                    </div>
-
-                    {/* Dashboard content */}
-                    <div className="space-y-4 bg-gradient-to-br from-white to-slate-50 p-6">
-                      {/* KPI Row */}
-                      <div className="grid grid-cols-3 gap-3">
-                        <div className="rounded-lg bg-white p-3 shadow-sm ring-1 ring-slate-100">
-                          <div className="text-xs text-slate-500">MTTR</div>
-                          <div className="text-xl font-bold text-brand">1.8h</div>
-                        </div>
-                        <div className="rounded-lg bg-white p-3 shadow-sm ring-1 ring-slate-100">
-                          <div className="text-xs text-slate-500">Uptime</div>
-                          <div className="text-xl font-bold text-emerald-600">99.2%</div>
-                        </div>
-                        <div className="rounded-lg bg-white p-3 shadow-sm ring-1 ring-slate-100">
-                          <div className="text-xs text-slate-500">WOs</div>
-                          <div className="text-xl font-bold text-accent">27</div>
-                        </div>
-                      </div>
-
-                      {/* Critical Assets */}
-                      <div className="space-y-2">
-                        <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
-                          Critical Assets
-                        </div>
-                        <div className="space-y-2">
-                          <div className="flex items-center justify-between rounded-lg bg-gradient-to-r from-emerald-50 to-white p-3 ring-1 ring-emerald-100">
-                            <span className="text-sm font-medium text-slate-700">Compressor A</span>
-                            <span className="rounded-full bg-emerald-500 px-2 py-0.5 text-xs font-semibold text-white">
-                              OK
-                            </span>
-                          </div>
-                          <div className="flex items-center justify-between rounded-lg bg-gradient-to-r from-amber-50 to-white p-3 ring-1 ring-amber-100">
-                            <span className="text-sm font-medium text-slate-700">Robot 3</span>
-                            <span className="rounded-full bg-amber-500 px-2 py-0.5 text-xs font-semibold text-white">
-                              PM Due
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              <div className="relative scale-125">
+                {/* Dashboard image with 3D floating effect */}
+                <div
+                  className="relative transform-gpu transition-all duration-500 hover:scale-110"
+                  style={{
+                    animation: 'float 6s ease-in-out infinite',
+                    filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5))',
+                  }}
+                >
+                  <img
+                    src="/dashboard.png"
+                    alt="Real-time CMMS Dashboard showing maintenance metrics"
+                    className="w-full h-auto rounded-2xl"
+                  />
                 </div>
               </div>
             </div>
@@ -367,19 +326,14 @@ export default function HomePage() {
         <MotionSection id="benefits" className="section">
           <div className="container-12">
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-4xl font-bold text-brand">
-                The hidden cost of reactive maintenance
-              </h2>
-              <p className="mt-4 text-lg text-slate-600">
-                Maintafox eliminates firefighting and transforms fragmented workflows into a
-                centralized, intelligent system.
-              </p>
+              <h2 className="text-4xl font-bold text-brand">{t.painPoints.title}</h2>
+              <p className="mt-4 text-lg text-slate-600">{t.painPoints.subtitle}</p>
             </div>
 
             <div className="mt-16 space-y-12">
-              {painpoints.map(({ title, desc, Icon }, index) => (
+              {painpoints.map(({ Icon }, index) => (
                 <div
-                  key={title}
+                  key={t.painPoints.items[index].title}
                   className={`group grid items-center gap-8 lg:grid-cols-2 ${
                     index % 2 === 1 ? 'lg:grid-flow-dense' : ''
                   }`}
@@ -399,10 +353,14 @@ export default function HomePage() {
                   {/* Content side */}
                   <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
                     <div className="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-100 transition-all group-hover:shadow-xl">
-                      <h3 className="text-2xl font-bold text-brand">{title}</h3>
-                      <p className="mt-4 text-slate-600 leading-relaxed">{desc}</p>
+                      <h3 className="text-2xl font-bold text-brand">
+                        {t.painPoints.items[index].title}
+                      </h3>
+                      <p className="mt-4 text-slate-600 leading-relaxed">
+                        {t.painPoints.items[index].description}
+                      </p>
                       <div className="mt-6 flex items-center gap-2 text-accent font-semibold">
-                        <span>Learn how Maintafox solves this</span>
+                        <span>{t.painPoints.learnMore}</span>
                         <svg
                           className="h-4 w-4 transition-transform group-hover:translate-x-1"
                           fill="none"
@@ -761,132 +719,64 @@ export default function HomePage() {
             </div>
           </div>
         </MotionSection>
-        {/* Pricing - Highlighted comparison */}
-        <MotionSection id="pricing" className="section section-muted">
+        {/* Pricing - Minimal Single Card with Animated Text */}
+        <MotionSection id="pricing" className="section bg-slate-50">
           <div className="container-12">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-4xl font-bold text-brand">Simple, transparent pricing</h2>
-              <p className="mt-4 text-lg text-slate-600">
-                Choose the plan that fits your facility size and needs. All plans include core CMMS
-                features, mobile apps, and local support.
-              </p>
-            </div>
-
-            <div className="mt-16 grid gap-8 lg:grid-cols-3">
-              {pricingPlans.map((plan, index) => {
-                const isHighlighted = index === 1; // Highlight the middle plan
-                return (
-                  <div
-                    key={plan.name}
-                    className={`relative rounded-3xl p-8 transition-all ${
-                      isHighlighted
-                        ? 'bg-gradient-to-br from-brand to-brand-dark text-white shadow-2xl scale-105 ring-4 ring-accent/50'
-                        : 'bg-white shadow-lg ring-1 ring-slate-200 hover:shadow-xl'
-                    }`}
-                  >
-                    {/* Popular badge */}
-                    {isHighlighted && (
-                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-accent px-6 py-1 text-sm font-semibold text-white shadow-lg">
-                        Most Popular
-                      </div>
-                    )}
-
-                    {/* Plan header */}
-                    <div className="text-center">
-                      <h3
-                        className={`text-2xl font-bold ${
-                          isHighlighted ? 'text-white' : 'text-brand'
-                        }`}
-                      >
-                        {plan.name}
-                      </h3>
-                      <p
-                        className={`mt-2 text-sm ${
-                          isHighlighted ? 'text-slate-200' : 'text-slate-600'
-                        }`}
-                      >
-                        {plan.desc}
-                      </p>
-
-                      <div className="mt-6">
-                        <span
-                          className={`text-5xl font-bold ${
-                            isHighlighted ? 'text-white' : 'text-brand'
-                          }`}
-                        >
-                          {plan.price.split(' / ')[0]}
-                        </span>
-                        {plan.price.includes('/') && (
-                          <span
-                            className={`ml-2 text-sm ${
-                              isHighlighted ? 'text-slate-200' : 'text-slate-600'
-                            }`}
-                          >
-                            / {plan.price.split(' / ')[1]}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* CTA button */}
-                    <a
-                      href="/demo"
-                      className={`mt-8 block w-full rounded-xl py-3 text-center font-semibold transition-all ${
-                        isHighlighted
-                          ? 'bg-accent text-white shadow-lg hover:bg-orange-600 hover:shadow-xl'
-                          : 'bg-brand text-white hover:bg-brand-dark'
-                      }`}
-                    >
-                      {plan.name === 'Enterprise' ? 'Contact Sales' : 'Start Free Trial'}
-                    </a>
-
-                    {/* Features list */}
-                    <ul className="mt-8 space-y-3">
-                      {plan.items.map((item, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-3">
-                          <div
-                            className={`mt-0.5 h-5 w-5 flex-shrink-0 rounded-full flex items-center justify-center ${
-                              isHighlighted ? 'bg-accent/20' : 'bg-brand/10'
-                            }`}
-                          >
-                            <svg
-                              className={`h-3 w-3 ${isHighlighted ? 'text-white' : 'text-brand'}`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={3}
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
-                          </div>
-                          <span
-                            className={`text-sm ${isHighlighted ? 'text-white' : 'text-slate-700'}`}
-                          >
-                            {item}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+            {/* Minimal Single Card */}
+            <div className="mx-auto max-w-3xl">
+              <div className="relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+                {/* Small header */}
+                <div className="text-center">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+                    {t.pricing.badge}
                   </div>
-                );
-              })}
-            </div>
+                  <h2 className="mt-4 text-2xl font-bold text-brand">{t.pricing.title}</h2>
+                </div>
 
-            {/* Bottom note */}
-            <div className="mt-12 text-center">
-              <p className="text-slate-600">
-                All plans include a{' '}
-                <span className="font-semibold text-brand">30-day free trial</span> with no credit
-                card required.
-                <a href="/demo" className="ml-1 font-semibold text-accent hover:underline">
-                  Request a demo
-                </a>{' '}
-                to see Maintafox in action.
-              </p>
+                {/* Animated rotating text factors */}
+                <div className="mt-6 flex flex-wrap justify-center gap-2 text-sm">
+                  {t.pricing.factors.map((factor, index) => (
+                    <span
+                      key={factor}
+                      className="inline-block rounded-lg bg-slate-50 px-3 py-1.5 text-slate-700 ring-1 ring-slate-200 transition-all hover:bg-brand/5 hover:text-brand hover:ring-brand/20"
+                      style={{
+                        animation: 'fadeIn 0.5s ease-in-out',
+                        animationDelay: `${index * 0.1}s`,
+                        animationFillMode: 'both',
+                      }}
+                    >
+                      {factor}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Simple CTA */}
+                <div className="mt-8 flex items-center justify-center gap-4">
+                  <a
+                    href="/demo"
+                    className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-brand-dark"
+                  >
+                    {t.pricing.ctaPrimary}
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </a>
+                  <a
+                    href="/contact"
+                    className="text-sm font-medium text-slate-600 hover:text-brand"
+                  >
+                    {t.pricing.ctaSecondary}
+                  </a>
+                </div>
+
+                {/* Bottom note */}
+                <p className="mt-6 text-center text-xs text-slate-500">{t.pricing.footer}</p>
+              </div>
             </div>
           </div>
         </MotionSection>
