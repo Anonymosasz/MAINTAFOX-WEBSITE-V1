@@ -2,6 +2,9 @@ import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import Image from 'next/image';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata = {
   title: 'Blog - Maintafox Insights',
   description:
@@ -9,29 +12,34 @@ export const metadata = {
 };
 
 async function getPosts() {
-  const posts = await prisma.post.findMany({
-    where: { status: 'APPROVED' },
-    include: {
-      author: {
-        select: {
-          id: true,
-          name: true,
-          image: true,
+  try {
+    const posts = await prisma.post.findMany({
+      where: { status: 'APPROVED' },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          },
+        },
+        _count: {
+          select: {
+            comments: true,
+          },
         },
       },
-      _count: {
-        select: {
-          comments: true,
-        },
+      orderBy: {
+        publishedAt: 'desc',
       },
-    },
-    orderBy: {
-      publishedAt: 'desc',
-    },
-    take: 20,
-  });
+      take: 20,
+    });
 
-  return posts;
+    return posts;
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    return [];
+  }
 }
 
 export default async function BlogPage() {
