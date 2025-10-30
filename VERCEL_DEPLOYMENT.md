@@ -51,6 +51,7 @@ Your MongoDB Atlas cluster needs to allow connections from Vercel:
 ### 4. Set Environment Variables in Vercel
 
 #### Option A: Via Vercel Dashboard (Recommended)
+
 1. Go to https://vercel.com/dashboard
 2. Select your project
 3. Go to **Settings** → **Environment Variables**
@@ -62,6 +63,7 @@ Your MongoDB Atlas cluster needs to allow connections from Vercel:
 6. Repeat for `NEXTAUTH_SECRET` and `NEXTAUTH_URL`
 
 #### Option B: Via Vercel CLI
+
 ```bash
 vercel env add DATABASE_URL
 # Paste your MongoDB connection string when prompted
@@ -84,6 +86,7 @@ git push origin main
 ```
 
 Or in Vercel Dashboard:
+
 1. Go to **Deployments**
 2. Click the **•••** menu on the latest deployment
 3. Select **Redeploy**
@@ -93,16 +96,19 @@ Or in Vercel Dashboard:
 ## What Was Fixed
 
 ### 1. Dynamic Rendering for Blog Pages
+
 - Added `export const dynamic = 'force-dynamic'` to `/app/blog/page.tsx`
 - This prevents Next.js from trying to statically generate the page at build time
 - The page will now be rendered on-demand when users visit
 
 ### 2. Error Handling
+
 - Added try-catch blocks around database queries
 - If database is unreachable during build, it gracefully fails instead of crashing
 - Empty arrays/results are returned as fallback
 
 ### 3. Sitemap Error Handling
+
 - Added error handling in `app/sitemap.ts`
 - Sitemap will generate with static pages even if database is unavailable
 - Blog posts will be added dynamically when database is connected
@@ -112,22 +118,27 @@ Or in Vercel Dashboard:
 ### Build Still Failing?
 
 **Check 1: Verify Environment Variables Are Set**
+
 ```bash
 vercel env ls
 ```
 
 **Check 2: Check MongoDB Atlas Network Access**
+
 - Ensure 0.0.0.0/0 is in the IP whitelist
 - Or add Vercel's IP ranges
 
 **Check 3: Test Database Connection Locally**
+
 ```bash
 npm run build
 ```
+
 If this works locally but fails in Vercel, it's definitely an environment variable issue.
 
 **Check 4: View Build Logs**
 Look for these specific errors:
+
 - `DATABASE_URL is not defined` → Environment variable not set in Vercel
 - `Server selection timeout` → MongoDB Atlas network access issue
 - `Authentication failed` → Wrong database credentials
@@ -137,15 +148,18 @@ Look for these specific errors:
 If you see "Server selection timeout" errors:
 
 1. **Verify Connection String Format**
+
    ```
    mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
    ```
 
 2. **Check MongoDB Atlas Status**
+
    - Visit https://status.mongodb.com/
    - Ensure no ongoing incidents
 
 3. **Test Connection String**
+
    ```bash
    # Install MongoDB Shell
    npm install -g mongosh
@@ -172,6 +186,7 @@ Before going live, ensure:
 ## Next Steps After Successful Deployment
 
 1. **Create Admin Account**
+
    ```bash
    # Connect to your Vercel deployment
    # Register at: https://www.maintafox.systems/auth/register
@@ -179,12 +194,14 @@ Before going live, ensure:
    ```
 
 2. **Test Blog Workflow**
+
    - Create a test post as AUTHOR
    - Approve it as ADMIN
    - Verify it appears on blog page
    - Check SEO with meta tags inspector
 
 3. **Add SendGrid (Optional)**
+
    - Get SendGrid API key
    - Add to Vercel environment variables
    - Uncomment email code in API routes
@@ -197,6 +214,7 @@ Before going live, ensure:
 ## Support
 
 If you continue to have issues:
+
 1. Check Vercel deployment logs: `vercel logs <deployment-url>`
 2. Check MongoDB Atlas logs in the dashboard
 3. Verify network connectivity between Vercel and MongoDB Atlas

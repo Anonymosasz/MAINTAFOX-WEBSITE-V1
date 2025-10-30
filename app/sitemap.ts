@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { prisma } from '@/lib/prisma';
 
+// Force Node.js runtime and dynamic rendering to avoid build-time DB queries
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
 

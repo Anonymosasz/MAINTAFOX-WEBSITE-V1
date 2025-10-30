@@ -4,31 +4,39 @@ import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import Image from 'next/image';
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: { slug: string };
 }
 
 async function getPost(slug: string) {
-  const post = await prisma.post.findUnique({
-    where: { slug, status: 'APPROVED' },
-    include: {
-      author: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          image: true,
+  try {
+    const post = await prisma.post.findUnique({
+      where: { slug, status: 'APPROVED' },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            image: true,
+          },
+        },
+        _count: {
+          select: {
+            comments: true,
+          },
         },
       },
-      _count: {
-        select: {
-          comments: true,
-        },
-      },
-    },
-  });
+    });
 
-  return post;
+    return post;
+  } catch (error) {
+    console.error('Error fetching post:', error);
+    return null;
+  }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
