@@ -51,10 +51,7 @@ export default function PostEditor({ initialData, mode = 'create' }: PostEditorP
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/auth/login?callbackUrl=/blog/create');
-    } else if (
-      status === 'authenticated' &&
-      session?.user.role === 'READER'
-    ) {
+    } else if (status === 'authenticated' && session?.user.role === 'READER') {
       router.push('/blog');
     }
   }, [status, session, router]);
@@ -94,9 +91,8 @@ export default function PostEditor({ initialData, mode = 'create' }: PostEditorP
     };
 
     try {
-      const url = mode === 'edit' && initialData?.id
-        ? `/api/posts/${initialData.id}`
-        : '/api/posts';
+      const url =
+        mode === 'edit' && initialData?.id ? `/api/posts/${initialData.id}` : '/api/posts';
 
       const method = mode === 'edit' ? 'PATCH' : 'POST';
 
@@ -135,17 +131,11 @@ export default function PostEditor({ initialData, mode = 'create' }: PostEditorP
           {mode === 'edit' ? 'Edit Post' : 'Create New Post'}
         </h1>
         <p className="mt-2 text-slate-600">
-          {mode === 'edit'
-            ? 'Update your blog post'
-            : 'Share your insights with the community'}
+          {mode === 'edit' ? 'Update your blog post' : 'Share your insights with the community'}
         </p>
       </div>
 
-      {error && (
-        <div className="mb-6 rounded-xl bg-red-50 p-4 text-sm text-red-600">
-          {error}
-        </div>
-      )}
+      {error && <div className="mb-6 rounded-xl bg-red-50 p-4 text-sm text-red-600">{error}</div>}
 
       <div className="space-y-6">
         {/* Title */}
@@ -249,9 +239,7 @@ export default function PostEditor({ initialData, mode = 'create' }: PostEditorP
 
         {/* Content Editor */}
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">
-            Content *
-          </label>
+          <label className="block text-sm font-medium text-slate-700 mb-2">Content *</label>
           <div className="rounded-xl border border-slate-300 overflow-hidden">
             <ReactQuill
               theme="snow"

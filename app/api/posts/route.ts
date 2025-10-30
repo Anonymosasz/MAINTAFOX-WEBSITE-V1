@@ -35,10 +35,7 @@ export async function GET(req: Request) {
     } else {
       // Admins see all, authors see their own + approved
       if (session.user.role === 'AUTHOR') {
-        where.OR = [
-          { status: 'APPROVED' },
-          { authorId: session.user.id },
-        ];
+        where.OR = [{ status: 'APPROVED' }, { authorId: session.user.id }];
       } else if (session.user.role === 'READER') {
         where.status = 'APPROVED';
       }
@@ -102,10 +99,7 @@ export async function GET(req: Request) {
     });
   } catch (error) {
     console.error('Error fetching posts:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch posts' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch posts' }, { status: 500 });
   }
 }
 
@@ -115,28 +109,19 @@ export async function POST(req: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     // Only authors and admins can create posts
     if (session.user.role === 'READER') {
-      return NextResponse.json(
-        { error: 'Insufficient permissions' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: 'Insufficient permissions' }, { status: 403 });
     }
 
     const body = await req.json();
     const validation = createPostSchema.safeParse(body);
 
     if (!validation.success) {
-      return NextResponse.json(
-        { error: validation.error.errors[0].message },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: validation.error.errors[0].message }, { status: 400 });
     }
 
     const data = validation.data;
@@ -180,9 +165,6 @@ export async function POST(req: Request) {
     return NextResponse.json(post, { status: 201 });
   } catch (error) {
     console.error('Error creating post:', error);
-    return NextResponse.json(
-      { error: 'Failed to create post' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create post' }, { status: 500 });
   }
 }

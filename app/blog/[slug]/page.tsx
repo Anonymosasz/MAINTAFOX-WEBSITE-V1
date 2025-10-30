@@ -200,12 +200,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         {post.coverImage && (
           <section className="container mx-auto max-w-4xl px-4 -mt-10">
             <div className="relative aspect-video overflow-hidden rounded-3xl shadow-2xl">
-              <Image
-                src={post.coverImage}
-                alt={post.title}
-                fill
-                className="object-cover"
-              />
+              <Image src={post.coverImage} alt={post.title} fill className="object-cover" />
             </div>
           </section>
         )}

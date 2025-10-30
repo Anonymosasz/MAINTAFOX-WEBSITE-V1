@@ -67,9 +67,7 @@ export default function RegisterPage() {
           <div className="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-200">
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600">
-                  {error}
-                </div>
+                <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600">{error}</div>
               )}
 
               <div>
@@ -117,13 +115,14 @@ export default function RegisterPage() {
                   className="mt-2 block w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
                   placeholder="••••••••"
                 />
-                <p className="mt-1 text-xs text-slate-500">
-                  Must be at least 8 characters
-                </p>
+                <p className="mt-1 text-xs text-slate-500">Must be at least 8 characters</p>
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-slate-700">
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-sm font-medium text-slate-700"
+                >
                   Confirm Password
                 </label>
                 <input

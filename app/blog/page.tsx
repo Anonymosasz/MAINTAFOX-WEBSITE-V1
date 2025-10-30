@@ -4,7 +4,8 @@ import Image from 'next/image';
 
 export const metadata = {
   title: 'Blog - Maintafox Insights',
-  description: 'Practical guides, benchmarks, and thought leadership on maintenance reliability, CMMS best practices, and digital transformation.',
+  description:
+    'Practical guides, benchmarks, and thought leadership on maintenance reliability, CMMS best practices, and digital transformation.',
 };
 
 async function getPosts() {
@@ -66,7 +67,7 @@ export default async function BlogPage() {
                 Practical guides, benchmarks, and thought leadership on maintenance reliability,
                 CMMS best practices, and digital transformation across Algerian industries.
               </p>
-              
+
               <Link
                 href="/blog/create"
                 className="mt-8 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 font-semibold text-white shadow-lg transition-all hover:bg-orange-600 hover:shadow-xl hover:scale-105"

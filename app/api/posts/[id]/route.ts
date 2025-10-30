@@ -16,10 +16,7 @@ const updatePostSchema = z.object({
 });
 
 // GET /api/posts/[id] - Get single post
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
     const post = await prisma.post.findUnique({
       where: { id: params.id },
@@ -41,10 +38,7 @@ export async function GET(
     });
 
     if (!post) {
-      return NextResponse.json(
-        { error: 'Post not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
     }
 
     // Increment view count
@@ -56,26 +50,17 @@ export async function GET(
     return NextResponse.json(post);
   } catch (error) {
     console.error('Error fetching post:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch post' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch post' }, { status: 500 });
   }
 }
 
 // PATCH /api/posts/[id] - Update post
-export async function PATCH(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(req: Request, { params }: { params: { id: string } }) {
   try {
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const post = await prisma.post.findUnique({
@@ -83,28 +68,19 @@ export async function PATCH(
     });
 
     if (!post) {
-      return NextResponse.json(
-        { error: 'Post not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
     }
 
     // Only author or admin can update
     if (session.user.role !== 'ADMIN' && post.authorId !== session.user.id) {
-      return NextResponse.json(
-        { error: 'Insufficient permissions' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: 'Insufficient permissions' }, { status: 403 });
     }
 
     const body = await req.json();
     const validation = updatePostSchema.safeParse(body);
 
     if (!validation.success) {
-      return NextResponse.json(
-        { error: validation.error.errors[0].message },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: validation.error.errors[0].message }, { status: 400 });
     }
 
     const data = validation.data;
@@ -159,26 +135,17 @@ export async function PATCH(
     return NextResponse.json(updatedPost);
   } catch (error) {
     console.error('Error updating post:', error);
-    return NextResponse.json(
-      { error: 'Failed to update post' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to update post' }, { status: 500 });
   }
 }
 
 // DELETE /api/posts/[id] - Delete post
-export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   try {
     const session = await getServerSession(authOptions);
 
     if (!session) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const post = await prisma.post.findUnique({
@@ -186,33 +153,21 @@ export async function DELETE(
     });
 
     if (!post) {
-      return NextResponse.json(
-        { error: 'Post not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
     }
 
     // Only author or admin can delete
     if (session.user.role !== 'ADMIN' && post.authorId !== session.user.id) {
-      return NextResponse.json(
-        { error: 'Insufficient permissions' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: 'Insufficient permissions' }, { status: 403 });
     }
 
     await prisma.post.delete({
       where: { id: params.id },
     });
 
-    return NextResponse.json(
-      { message: 'Post deleted successfully' },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: 'Post deleted successfully' }, { status: 200 });
   } catch (error) {
     console.error('Error deleting post:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete post' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to delete post' }, { status: 500 });
   }
 }

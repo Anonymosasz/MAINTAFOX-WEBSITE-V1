@@ -284,6 +284,7 @@ export default function HomePage() {
                     filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5))',
                   }}
                 >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/dashboard.png"
                     alt="Real-time CMMS Dashboard showing maintenance metrics"

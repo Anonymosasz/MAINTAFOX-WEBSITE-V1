@@ -12,13 +12,13 @@ export default function Navbar() {
   const { data: session } = useSession();
   const [scrolled, setScrolled] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  
+
   return (
     <header
       className={`sticky top-0 z-50 transition-colors ${
@@ -47,7 +47,7 @@ export default function Navbar() {
             {t.nav.contact}
           </Link>
           <LanguageSwitcher />
-          
+
           {/* Auth Section */}
           {session ? (
             <div className="relative">
@@ -60,27 +60,31 @@ export default function Navbar() {
                 </div>
                 <span className="text-slate-700">{session.user.name}</span>
               </button>
-              
+
               {userMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 rounded-xl bg-white shadow-xl ring-1 ring-slate-200 py-2">
                   <div className="px-4 py-2 border-b border-slate-100">
                     <p className="text-xs text-slate-500">Signed in as</p>
-                    <p className="text-sm font-medium text-slate-900 truncate">{session.user.email}</p>
-                    <p className="text-xs text-slate-500 capitalize">{session.user.role.toLowerCase()}</p>
+                    <p className="text-sm font-medium text-slate-900 truncate">
+                      {session.user.email}
+                    </p>
+                    <p className="text-xs text-slate-500 capitalize">
+                      {session.user.role.toLowerCase()}
+                    </p>
                   </div>
-                  
+
                   {(session.user.role === 'AUTHOR' || session.user.role === 'ADMIN') && (
                     <Link href="/blog/create" className="block px-4 py-2 text-sm hover:bg-slate-50">
                       Write Post
                     </Link>
                   )}
-                  
+
                   {session.user.role === 'ADMIN' && (
                     <Link href="/admin/blog" className="block px-4 py-2 text-sm hover:bg-slate-50">
                       Admin Dashboard
                     </Link>
                   )}
-                  
+
                   <button
                     onClick={() => signOut({ callbackUrl: '/' })}
                     className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
@@ -95,7 +99,7 @@ export default function Navbar() {
               Sign In
             </Link>
           )}
-          
+
           <Link href="/demo" className="btn-primary">
             {t.nav.demo}
           </Link>

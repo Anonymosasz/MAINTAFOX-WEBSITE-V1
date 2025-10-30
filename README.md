@@ -5,6 +5,7 @@ Production-ready Next.js (App Router) website for Maintafox CMMS with integrated
 ## 🎉 New Features
 
 ### Blog System
+
 - ✍️ User-authored blog posts with rich text editor
 - 🔐 User authentication (NextAuth)
 - 👥 Role-based access (READER, AUTHOR, ADMIN)

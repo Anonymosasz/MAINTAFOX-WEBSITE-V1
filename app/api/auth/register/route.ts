@@ -15,10 +15,7 @@ export async function POST(req: Request) {
     const validation = registerSchema.safeParse(body);
 
     if (!validation.success) {
-      return NextResponse.json(
-        { error: validation.error.errors[0].message },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: validation.error.errors[0].message }, { status: 400 });
     }
 
     const { name, email, password } = validation.data;
@@ -29,10 +26,7 @@ export async function POST(req: Request) {
     });
 
     if (existingUser) {
-      return NextResponse.json(
-        { error: 'User with this email already exists' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'User with this email already exists' }, { status: 400 });
     }
 
     // Hash password
@@ -67,9 +61,6 @@ export async function POST(req: Request) {
     );
   } catch (error) {
     console.error('Registration error:', error);
-    return NextResponse.json(
-      { error: 'An error occurred during registration' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'An error occurred during registration' }, { status: 500 });
   }
 }

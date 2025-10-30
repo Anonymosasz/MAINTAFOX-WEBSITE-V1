@@ -54,9 +54,7 @@ export default function LoginPage() {
           <div className="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-slate-200">
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600">
-                  {error}
-                </div>
+                <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600">{error}</div>
               )}
 
               <div>
@@ -99,7 +97,7 @@ export default function LoginPage() {
             </form>
 
             <div className="mt-6 text-center text-sm text-slate-600">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/auth/register" className="font-semibold text-brand hover:text-accent">
                 Register here
               </Link>
