@@ -1,5 +1,7 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MotionSection } from '@/components/motion/MotionSection';
+import { JsonLd, productSchema, softwareAppSchema } from '@/components/JsonLd';
 import {
   Gauge,
   ClipboardCheck,
@@ -13,6 +15,38 @@ import {
   MessagesSquare,
   Smartphone,
 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'CMMS Features & Capabilities',
+  description:
+    'Explore Maintafox CMMS features: asset management, work order automation, preventive maintenance, inventory control, analytics dashboards, and mobile app for field technicians across Algeria.',
+  keywords: [
+    'CMMS features',
+    'maintenance management software',
+    'asset lifecycle management',
+    'work order system',
+    'preventive maintenance automation',
+    'inventory management',
+    'maintenance analytics',
+    'CMMS Algeria',
+  ],
+  openGraph: {
+    title: 'CMMS Features & Capabilities — Maintafox',
+    description:
+      'Complete CMMS platform with asset management, intelligent work orders, preventive maintenance, spare parts tracking, and real-time analytics for industrial operations.',
+    type: 'website',
+    url: 'https://www.maintafox.systems/features',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CMMS Features & Capabilities — Maintafox',
+    description:
+      'Complete CMMS platform with asset management, intelligent work orders, preventive maintenance, and real-time analytics.',
+  },
+  alternates: {
+    canonical: '/features',
+  },
+};
 
 const coreModules = [
   {
@@ -107,6 +141,8 @@ const mobilityHighlights = [
 export default function FeaturesPage() {
   return (
     <>
+      <JsonLd data={productSchema} />
+      <JsonLd data={softwareAppSchema} />
       <main>
         <section className="section bg-gradient-to-br from-slate-50 via-white to-slate-100">
           <div className="container-12 grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">

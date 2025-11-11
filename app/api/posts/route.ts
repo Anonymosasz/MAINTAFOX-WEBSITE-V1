@@ -15,6 +15,8 @@ const createPostSchema = z.object({
   status: z.enum(['DRAFT', 'PENDING']),
 });
 
+export const runtime = 'nodejs';
+
 // GET /api/posts - List posts with filters
 export async function GET(req: Request) {
   try {
@@ -98,6 +100,15 @@ export async function GET(req: Request) {
       },
     });
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    const isDbUnavailable = message.includes('Server selection timeout');
+    if (isDbUnavailable) {
+      console.error('Error fetching posts - database unavailable:', message);
+      return NextResponse.json(
+        { error: 'Service temporarily unavailable. Please try again shortly.' },
+        { status: 503 }
+      );
+    }
     console.error('Error fetching posts:', error);
     return NextResponse.json({ error: 'Failed to fetch posts' }, { status: 500 });
   }
@@ -164,6 +175,15 @@ export async function POST(req: Request) {
 
     return NextResponse.json(post, { status: 201 });
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    const isDbUnavailable = message.includes('Server selection timeout');
+    if (isDbUnavailable) {
+      console.error('Error creating post - database unavailable:', message);
+      return NextResponse.json(
+        { error: 'Service temporarily unavailable. Please try again shortly.' },
+        { status: 503 }
+      );
+    }
     console.error('Error creating post:', error);
     return NextResponse.json({ error: 'Failed to create post' }, { status: 500 });
   }

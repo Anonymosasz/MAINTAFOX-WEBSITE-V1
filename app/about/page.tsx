@@ -1,4 +1,36 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'About Maintafox — Algerian CMMS Innovation',
+  description:
+    'Maintafox is an Algerian-built CMMS recognized by NABTAKAR. We partner with industrial, healthcare, and utility organizations to deliver locally supported maintenance management solutions.',
+  keywords: [
+    'Maintafox',
+    'CMMS Algeria',
+    'Algerian startup',
+    'NABTAKAR',
+    'maintenance software Algeria',
+    'industrial software',
+    'locally supported CMMS',
+  ],
+  openGraph: {
+    title: 'About Maintafox — Algerian CMMS Innovation',
+    description:
+      'Recognized by NABTAKAR, Maintafox delivers locally supported CMMS to Algerian industries with bilingual interfaces and on-premise deployment.',
+    type: 'website',
+    url: 'https://www.maintafox.systems/about',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Maintafox — Algerian CMMS Innovation',
+    description:
+      'Recognized by NABTAKAR, Maintafox delivers locally supported CMMS to Algerian industries.',
+  },
+  alternates: {
+    canonical: '/about',
+  },
+};
 
 const milestones = [
   {

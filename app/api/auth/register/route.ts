@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 
@@ -8,6 +9,8 @@ const registerSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
 });
+
+export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
   try {
@@ -60,6 +63,20 @@ export async function POST(req: Request) {
       { status: 201 }
     );
   } catch (error) {
+    // Database connectivity issues: return 503 with clear message
+    const message = error instanceof Error ? error.message : String(error);
+    const isDbUnavailable =
+      message.includes('Server selection timeout') ||
+      (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2010');
+
+    if (isDbUnavailable) {
+      console.error('Registration error - database unavailable:', message);
+      return NextResponse.json(
+        { error: 'Service temporarily unavailable. Please try again shortly.' },
+        { status: 503 }
+      );
+    }
+
     console.error('Registration error:', error);
     return NextResponse.json({ error: 'An error occurred during registration' }, { status: 500 });
   }

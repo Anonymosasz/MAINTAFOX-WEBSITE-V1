@@ -23,17 +23,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/#benefits" className="hover:text-brand">
-                Benefits
-              </Link>
-            </li>
-            <li>
-              <Link href="/#how-it-works" className="hover:text-brand">
-                How It Works
-              </Link>
-            </li>
-            <li>
-              <Link href="/#pricing" className="hover:text-brand">
+              <Link href="/pricing" className="hover:text-brand">
                 Pricing
               </Link>
             </li>

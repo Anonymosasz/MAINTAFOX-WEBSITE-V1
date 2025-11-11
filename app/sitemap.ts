@@ -40,6 +40,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: `${base}/pricing`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    },
+    {
       url: `${base}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
@@ -58,6 +64,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${base}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.7,
+    },
+    {
       url: `${base}/privacy`,
       lastModified: new Date(),
       changeFrequency: 'yearly' as const,
@@ -68,12 +80,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'yearly' as const,
       priority: 0.5,
-    },
-    {
-      url: `${base}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
-      priority: 0.6,
     },
     ...blogUrls,
   ];

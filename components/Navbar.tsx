@@ -37,7 +37,7 @@ export default function Navbar() {
           <Link href="/about" className="hover:text-brand">
             {t.nav.about}
           </Link>
-          <Link href="/#pricing" className="hover:text-brand">
+          <Link href="/pricing" className="hover:text-brand">
             {t.nav.pricing}
           </Link>
           <Link href="/blog" className="hover:text-brand">
